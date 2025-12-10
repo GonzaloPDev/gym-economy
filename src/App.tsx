@@ -582,24 +582,187 @@ const DemoCTA = () => (
   </section>
 );
 
-// Investor Section Divider
+// Investor Section Divider - DARK PREMIUM
 const InvestorDivider = () => (
-  <section className="py-12 bg-slate-950">
-    <div className="container mx-auto px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-sm mb-6">
-          🚀 OPORTUNIDAD DE INVERSIÓN
+  <section className="min-h-screen relative flex items-center bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden">
+
+    {/* Capa oscura sutil */}
+    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+    {/* Textura de ruido fina */}
+    <div className="absolute inset-0 opacity-25 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+
+    <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-5xl mx-auto text-center">
+
+        {/* Badge */}
+        <div className="inline-block bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-8 py-4 mb-10 shadow-md">
+          <span className="text-cyan-300 text-2xl font-semibold tracking-wide">
+            🚀 OPORTUNIDAD DE INVERSIÓN
+          </span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Un mercado en expansión con un modelo probado
-        </h2>
-        <p className="text-slate-400 text-lg">
-          Conoce los números detrás de SIG-FIT y por qué es una oportunidad estratégica
+
+        {/* Título */}
+        <h1 className="text-6xl md:text-8xl font-black mb-10 leading-tight drop-shadow-lg">
+          Invertí en el futuro
+          <span className="block bg-gradient-to-r from-cyan-300 to-blue-200 bg-clip-text text-transparent drop-shadow-xl">
+            del fitness digital
+          </span>
+        </h1>
+
+        {/* Subtítulo */}
+        <p className="text-2xl md:text-3xl text-slate-300 mb-14 max-w-4xl mx-auto font-light leading-snug">
+          SIG-FIT está llevando gimnasios tradicionales hacia plataformas escalables.
+          <span className="font-bold text-cyan-300"> Un mercado de +$10M solo en Argentina.</span>
         </p>
+
+        {/* Stats */}
+        <div className="grid md:grid-cols-4 gap-8 mb-14">
+          {[
+            { value: "85%", label: "Margen de Rentabilidad" },
+            { value: "$88K", label: "Flujo a 5 años" },
+            { value: "50+", label: "Clientes Año 5" },
+            { value: "Año 1", label: "Cash Flow +" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-slate-800/40 backdrop-blur-xl border border-cyan-300/20 rounded-2xl p-6 shadow-xl hover:bg-slate-800/60 transition-all"
+            >
+              <div className="text-5xl font-black mb-3 text-cyan-300 drop-shadow">
+                {item.value}
+              </div>
+              <div className="text-slate-300 font-medium">{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Botones */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <button className="bg-cyan-300 text-black px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl hover:bg-cyan-200 hover:scale-[1.02] transition-all flex items-center justify-center gap-3">
+            Ver Pitch Deck Completo
+            <ArrowRight className="w-7 h-7" />
+          </button>
+
+          <button className="border border-cyan-300/40 bg-white/5 backdrop-blur-md px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 hover:scale-[1.02] transition-all">
+            Agendar Llamada
+          </button>
+        </div>
       </div>
     </div>
   </section>
 );
+
+// Investment Needed - DARK PREMIUM
+const InvestmentNeeded = () => {
+  const raised = 12000;
+  const goal = 50000;
+  const percentage = (raised / goal) * 100;
+
+  return (
+    <section className="py-24 bg-black text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <span className="text-cyan-300 font-semibold text-sm uppercase tracking-wider">
+              Inversión Necesaria
+            </span>
+
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 drop-shadow">
+              Buscamos{" "}
+              <span className="text-cyan-200">
+                ${goal.toLocaleString()} USD
+              </span>
+            </h2>
+
+            <p className="text-xl text-slate-400 leading-relaxed">
+              Para marketing, equipo comercial e infraestructura tecnológica.
+            </p>
+          </div>
+
+          {/* Progreso */}
+          <div className="bg-slate-900 border border-cyan-300/20 rounded-2xl p-10 shadow-xl">
+
+            <div className="flex justify-between items-end mb-5">
+              <div>
+                <div className="text-sm text-slate-500 mb-1">Capital Comprometido</div>
+                <div className="text-4xl font-bold text-cyan-300">
+                  ${raised.toLocaleString()}
+                </div>
+              </div>
+
+              <div className="text-right">
+                <div className="text-sm text-slate-500 mb-1">Meta Total</div>
+                <div className="text-4xl font-bold">
+                  ${goal.toLocaleString()}
+                </div>
+              </div>
+            </div>
+
+            {/* Barra */}
+            <div className="relative h-9 bg-slate-800 rounded-full overflow-hidden mb-4">
+              <div
+                className="h-full bg-gradient-to-r from-teal-400 via-cyan-300 to-blue-400 transition-all duration-1000 shadow-inner flex items-center justify-end pr-4"
+                style={{ width: `${percentage}%` }}
+              >
+                <span className="text-black font-bold text-sm bg-white/80 px-2 py-1 rounded">
+                  {percentage.toFixed(0)}%
+                </span>
+              </div>
+            </div>
+
+            <div className="flex justify-between text-sm text-slate-500">
+              <span>🎯 ${(goal - raised).toLocaleString()} restantes</span>
+              <span>⏱️ Ronda abierta hasta Q1 2026</span>
+            </div>
+          </div>
+
+          {/* Distribución */}
+          <div className="grid md:grid-cols-3 gap-6 mt-10">
+            {[
+              {
+                icon: "📢",
+                pct: "40%",
+                label: "Marketing Digital",
+                desc: "Ads, SEO y contenido",
+                color: "cyan",
+              },
+              {
+                icon: "👥",
+                pct: "35%",
+                label: "Equipo Comercial",
+                desc: "Sales reps y prospecting",
+                color: "emerald",
+              },
+              {
+                icon: "⚙️",
+                pct: "25%",
+                label: "Infraestructura",
+                desc: "Servidores y desarrollo",
+                color: "blue",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className={`bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-700/10 border border-${item.color}-400/20 rounded-xl p-7 shadow-lg`}
+              >
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <div className="text-3xl font-bold text-${item.color}-300">{item.pct}</div>
+                <div className={`text-${item.color}-300 font-semibold mb-2 text-lg`}>
+                  {item.label}
+                </div>
+                <p className="text-sm text-slate-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 
 // Market Opportunity
 const MarketOpportunity = () => (
