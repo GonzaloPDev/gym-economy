@@ -6,23 +6,23 @@ const Hero = () => (
   <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
     <div className="absolute inset-0 bg-black opacity-30"></div>
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
-    
+
     <div className="container mx-auto px-6 relative z-10">
       <div className="max-w-4xl">
         <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
           <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
         </div>
-        
+
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           Transforma tu gimnasio en una
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> máquina digital</span>
         </h1>
-        
+
         <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl">
-          SIG-FIT automatiza pagos, gestiona accesos, personaliza rutinas y crea comunidad. 
+          SIG-FIT automatiza pagos, gestiona accesos, personaliza rutinas y crea comunidad.
           Todo en una plataforma escalable para gimnasios que quieren crecer.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
             Solicitar Demo Gratis
@@ -32,7 +32,7 @@ const Hero = () => (
             Ver Presentación
           </button>
         </div>
-        
+
         <div className="flex flex-wrap gap-8 text-sm">
           <div className="flex items-center gap-2">
             <Smartphone className="w-5 h-5 text-blue-300" />
@@ -65,7 +65,7 @@ const Problem = () => (
           Por falta de seguimiento en renovaciones, control manual de pagos y deserción silenciosa de clientes
         </p>
       </div>
-      
+
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
         <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
           <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
@@ -76,7 +76,7 @@ const Problem = () => (
             Planillas Excel desconectadas, cuadernos manuales y sistemas obsoletos que no escalan con el negocio
           </p>
         </div>
-        
+
         <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
           <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
             <span className="text-3xl">💸</span>
@@ -86,7 +86,7 @@ const Problem = () => (
             Errores en cobros, morosidad por olvido y falta de visibilidad sobre el estado financiero real
           </p>
         </div>
-        
+
         <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
           <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
             <span className="text-3xl">👤</span>
@@ -97,7 +97,7 @@ const Problem = () => (
           </p>
         </div>
       </div>
-      
+
       <div className="mt-12 text-center">
         <div className="inline-block bg-red-50 border-2 border-red-200 rounded-lg px-6 py-4">
           <p className="text-slate-700">
@@ -139,7 +139,7 @@ const ValueProposition = () => {
       description: "Red social interna: logros compartidos, comentarios y likes que fortalecen el engagement"
     }
   ];
-  
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -152,7 +152,7 @@ const ValueProposition = () => {
             Una plataforma completa que transforma la operación y la experiencia del usuario
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {layers.map((layer, idx) => (
             <div key={idx} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-100 hover:border-blue-300 transition-all hover:shadow-xl">
@@ -163,7 +163,7 @@ const ValueProposition = () => {
               <p className="text-slate-700">{layer.description}</p>
             </div>
           ))}
-          
+
           <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-2xl text-white hover:shadow-2xl transition-all">
             <div className="text-4xl mb-4">🎯</div>
             <h3 className="text-2xl font-bold mb-3">Todo en Uno</h3>
@@ -192,7 +192,7 @@ const Features = () => (
           Arquitectura moderna, segura y pensada para el crecimiento
         </p>
       </div>
-      
+
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <div>
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
@@ -220,7 +220,7 @@ const Features = () => (
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
             <Shield className="w-8 h-8 text-purple-400" />
@@ -247,7 +247,7 @@ const Features = () => (
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
             <Zap className="w-8 h-8 text-yellow-400" />
@@ -274,7 +274,7 @@ const Features = () => (
             </li>
           </ul>
         </div>
-        
+
         <div>
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
             <TrendingUp className="w-8 h-8 text-green-400" />
@@ -316,7 +316,7 @@ const Comparison = () => (
           ¿Por qué elegir SIG-FIT?
         </h2>
       </div>
-      
+
       <div className="max-w-5xl mx-auto overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-xl">
           <thead>
@@ -374,7 +374,7 @@ const Testimonials = () => {
       quote: "Pasamos de Excel a una plataforma profesional. Ahora tenemos visibilidad total de nuestro negocio."
     }
   ];
-  
+
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="container mx-auto px-6">
@@ -384,7 +384,7 @@ const Testimonials = () => {
             Gimnasios que ya transformaron su gestión
           </h2>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((t, idx) => (
             <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
@@ -397,7 +397,7 @@ const Testimonials = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-12 text-center">
           <div className="inline-block bg-white rounded-xl p-8 shadow-lg">
             <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
@@ -406,13 +406,13 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-);
+  );
 };
 
 // Pricing
 const Pricing = () => {
   const [annual, setAnnual] = useState(false);
-  
+
   return (
     <section className="py-20 bg-slate-900 text-white">
       <div className="container mx-auto px-6">
@@ -424,15 +424,15 @@ const Pricing = () => {
           <p className="text-xl text-slate-300 mb-8">
             Sin costos ocultos. Sin sorpresas. Elige el modelo que mejor se adapte a tu negocio.
           </p>
-          
+
           <div className="inline-flex items-center gap-4 bg-slate-800 p-2 rounded-lg">
-            <button 
+            <button
               onClick={() => setAnnual(false)}
               className={`px-6 py-2 rounded-md transition-all ${!annual ? 'bg-blue-600 text-white' : 'text-slate-300'}`}
             >
               Mensual
             </button>
-            <button 
+            <button
               onClick={() => setAnnual(true)}
               className={`px-6 py-2 rounded-md transition-all ${annual ? 'bg-blue-600 text-white' : 'text-slate-300'}`}
             >
@@ -440,7 +440,7 @@ const Pricing = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* SaaS Plan */}
           <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-1 rounded-2xl">
@@ -454,7 +454,7 @@ const Pricing = () => {
                 </div>
                 <div className="text-slate-400 text-sm">Setup inicial: $700 USD</div>
               </div>
-              
+
               <ul className="space-y-4 mb-8">
                 <li className="flex gap-3">
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
@@ -477,13 +477,13 @@ const Pricing = () => {
                   <span>Sin costos de servidor</span>
                 </li>
               </ul>
-              
+
               <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all">
                 Empezar Ahora
               </button>
             </div>
           </div>
-          
+
           {/* License Plan */}
           <div className="bg-slate-800 p-8 rounded-2xl border-2 border-slate-700">
             <div className="text-sm font-semibold text-slate-400 mb-2">LICENCIA PERPETUA</div>
@@ -495,7 +495,7 @@ const Pricing = () => {
               </div>
               <div className="text-slate-400 text-sm">Mantenimiento opcional: $110/año</div>
             </div>
-            
+
             <ul className="space-y-4 mb-8">
               <li className="flex gap-3">
                 <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
@@ -518,13 +518,13 @@ const Pricing = () => {
                 <span>Actualizaciones bajo demanda</span>
               </li>
             </ul>
-            
+
             <button className="w-full border-2 border-slate-600 py-4 rounded-lg font-semibold hover:bg-slate-700 transition-all">
               Consultar Licencia
             </button>
           </div>
         </div>
-        
+
         <div className="mt-12 text-center">
           <p className="text-slate-400 mb-4">¿No estás seguro cuál elegir?</p>
           <button className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 mx-auto">
@@ -548,7 +548,7 @@ const DemoCTA = () => (
         <p className="text-xl text-blue-100 mb-8">
           Te mostramos cómo SIG-FIT puede transformar tu gimnasio en una sesión personalizada de 30 minutos
         </p>
-        
+
         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8">
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <div>
@@ -568,12 +568,12 @@ const DemoCTA = () => (
             </div>
           </div>
         </div>
-        
+
         <button className="bg-white text-blue-900 px-12 py-5 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-2xl hover:shadow-3xl inline-flex items-center gap-3">
           Solicitar Demo Gratuita
           <ArrowRight className="w-6 h-6" />
         </button>
-        
+
         <p className="text-blue-200 text-sm mt-6">
           ✅ Sin compromiso • ✅ 30 días de garantía • ✅ Implementación en 48hs
         </p>
@@ -595,15 +595,8 @@ const InvestorDivider = () => (
     <div className="container mx-auto px-6 relative z-10">
       <div className="max-w-5xl mx-auto text-center">
 
-        {/* Badge */}
-        <div className="inline-block bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-8 py-4 mb-10 shadow-md">
-          <span className="text-cyan-300 text-2xl font-semibold tracking-wide">
-            🚀 OPORTUNIDAD DE INVERSIÓN
-          </span>
-        </div>
-
         {/* Título */}
-        <h1 className="text-6xl md:text-8xl font-black mb-10 leading-tight drop-shadow-lg">
+        <h1 className="text-5xl md:text-8xl font-black mb-10 leading-tight drop-shadow-lg mt-28">
           Invertí en el futuro
           <span className="block bg-gradient-to-r from-cyan-300 to-blue-200 bg-clip-text text-transparent drop-shadow-xl">
             del fitness digital
@@ -638,11 +631,6 @@ const InvestorDivider = () => (
 
         {/* Botones */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <button className="bg-cyan-300 text-black px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl hover:bg-cyan-200 hover:scale-[1.02] transition-all flex items-center justify-center gap-3">
-            Ver Pitch Deck Completo
-            <ArrowRight className="w-7 h-7" />
-          </button>
-
           <button className="border border-cyan-300/40 bg-white/5 backdrop-blur-md px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 hover:scale-[1.02] transition-all">
             Agendar Llamada
           </button>
@@ -782,7 +770,7 @@ const MarketOpportunity = () => (
               Existe una brecha tecnológica clara: son demasiado grandes para gestión manual, pero requieren flujos muy específicos que los SaaS globales no cubren.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-6">
               <div className="text-4xl font-bold text-amber-400 mb-2">15%</div>
@@ -802,7 +790,7 @@ const MarketOpportunity = () => (
             </div>
           </div>
         </div>
-        
+
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-6">Ventaja Competitiva Sostenible</h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -842,14 +830,14 @@ const BusinessModel = () => (
             Economías de escala que maximizan el margen a medida que crece la base de clientes
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-2 border-blue-500/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <DollarSign className="w-8 h-8 text-green-400" />
               Estructura de Ingresos
             </h3>
-            
+
             <div className="space-y-4">
               <div className="flex justify-between items-center pb-4 border-b border-slate-700">
                 <div>
@@ -858,7 +846,7 @@ const BusinessModel = () => (
                 </div>
                 <div className="text-2xl font-bold text-green-400">$700</div>
               </div>
-              
+
               <div className="flex justify-between items-center pb-4 border-b border-slate-700">
                 <div>
                   <div className="font-semibold">Mantenimiento SaaS</div>
@@ -866,20 +854,20 @@ const BusinessModel = () => (
                 </div>
                 <div className="text-2xl font-bold text-blue-400">$45/mes</div>
               </div>
-              
+
               <div className="bg-slate-800 rounded-xl p-4 mt-4">
                 <div className="text-sm text-slate-400 mb-2">Ingreso anual por cliente (SaaS)</div>
                 <div className="text-3xl font-bold">$1,240 <span className="text-lg text-slate-400">USD</span></div>
               </div>
             </div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-amber-600/20 to-orange-600/20 border-2 border-amber-500/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <BarChart3 className="w-8 h-8 text-amber-400" />
               Estructura de Costos
             </h3>
-            
+
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
@@ -888,7 +876,7 @@ const BusinessModel = () => (
                 </div>
                 <div className="text-xs text-slate-400">Infraestructura compartida, soporte, herramientas</div>
               </div>
-              
+
               <div>
                 <div className="flex justify-between mb-2">
                   <span className="text-slate-300">Costo Variable/Cliente</span>
@@ -896,16 +884,16 @@ const BusinessModel = () => (
                 </div>
                 <div className="text-xs text-slate-400">CPU, RAM, tráfico incremental (muy bajo)</div>
               </div>
-              
+
               <div className="bg-slate-800 rounded-xl p-4 mt-4">
-                <div className="text-sm text-slate-400 mb-2">Margen de Rentabilidad</div>
-                <div className="text-3xl font-bold text-green-400">~85%</div>
+                <div className="text-sm text-slate-400 mb-2">TIR (Tasa Interna de Retorno)</div>
+                <div className="text-3xl font-bold text-green-400">~115%</div>
                 <div className="text-xs text-slate-400 mt-2">A partir del segundo año con 10+ clientes</div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div className="bg-slate-950 border border-amber-500/30 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-6 text-center">🚀 Por qué el modelo SaaS es superior</h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -939,33 +927,33 @@ const KPIs = () => (
             KPIs que Importan
           </h2>
         </div>
-        
+
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6 text-center">
             <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <div className="text-3xl font-bold mb-2">4-8</div>
             <div className="text-slate-400 text-sm">Clientes/mes (conservador)</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30 rounded-xl p-6 text-center">
             <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
             <div className="text-3xl font-bold mb-2">15-25</div>
             <div className="text-slate-400 text-sm">Clientes/mes (optimizado)</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6 text-center">
             <DollarSign className="w-12 h-12 text-purple-400 mx-auto mb-4" />
             <div className="text-3xl font-bold mb-2">$1,240</div>
             <div className="text-slate-400 text-sm">Ingreso anual/cliente</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-amber-600/20 to-amber-800/20 border border-amber-500/30 rounded-xl p-6 text-center">
             <Users className="w-12 h-12 text-amber-400 mx-auto mb-4" />
             <div className="text-3xl font-bold mb-2">85%</div>
             <div className="text-slate-400 text-sm">Margen de rentabilidad</div>
           </div>
         </div>
-        
+
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-6">Estrategia de Adquisición Multi-Canal</h3>
           <div className="grid md:grid-cols-2 gap-8">
@@ -1002,7 +990,7 @@ const KPIs = () => (
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-bold text-lg mb-4 text-green-400">Conversión Esperada</h4>
               <div className="space-y-4">
@@ -1015,7 +1003,7 @@ const KPIs = () => (
                     <div className="h-full bg-blue-400 w-[30%]"></div>
                   </div>
                 </div>
-                
+
                 <div className="bg-slate-800 rounded-lg p-4">
                   <div className="flex justify-between mb-2">
                     <span className="text-slate-300">Demo → Cliente</span>
@@ -1025,7 +1013,7 @@ const KPIs = () => (
                     <div className="h-full bg-green-400 w-[20%]"></div>
                   </div>
                 </div>
-                
+
                 <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-lg p-4 mt-4">
                   <div className="text-sm text-slate-400 mb-1">Pipeline Mensual Proyectado</div>
                   <div className="text-2xl font-bold">8-15 clientes nuevos</div>
@@ -1043,13 +1031,13 @@ const KPIs = () => (
 // Financial Projections
 const FinancialProjections = () => {
   const data = [
-    { year: 'Año 1', clients: 3, revenue: 3600, expenses: 535, cashflow: 2912 },
-    { year: 'Año 2', clients: 10, revenue: 10400, expenses: 1100, cashflow: 8835 },
-    { year: 'Año 3', clients: 25, revenue: 24000, expenses: 2350, cashflow: 20568 },
-    { year: 'Año 4', clients: 40, revenue: 32100, expenses: 3500, cashflow: 27170 },
-    { year: 'Año 5', clients: 50, revenue: 34000, expenses: 4200, cashflow: 28310 }
+    { year: 'Año 1', clients: 8, revenue: 5600, expenses: 4566, cashflow: 1034 },
+    { year: 'Año 2', clients: 12, revenue: 11960, expenses: 5320, cashflow: 6640 },
+    { year: 'Año 3', clients: 18, revenue: 22840, expenses: 6809, cashflow: 16031 },
+    { year: 'Año 4', clients: 22, revenue: 34480, expenses: 7718, cashflow: 26762 },
+    { year: 'Año 5', clients: 25, revenue: 48380, expenses: 8950, cashflow: 39430 }
   ];
-  
+
   return (
     <section className="py-20 bg-slate-900 text-white">
       <div className="container mx-auto px-6">
@@ -1060,10 +1048,10 @@ const FinancialProjections = () => {
               Cash Flow Positivo desde el Año 1
             </h2>
             <p className="text-slate-300 text-xl">
-              Proyección a 5 años con crecimiento conservador y margen superior al 85%
+              Proyección a 5 años con crecimiento conservador
             </p>
           </div>
-          
+
           <div className="bg-slate-950 border border-slate-800 rounded-2xl p-8 mb-8">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -1090,26 +1078,32 @@ const FinancialProjections = () => {
               </table>
             </div>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-4 gap-6">
+
+            {/* Flujo acumulado */}
             <div className="bg-gradient-to-br from-green-600/20 to-emerald-600/20 border border-green-500/30 rounded-xl p-6">
               <LineChart className="w-10 h-10 text-green-400 mb-4" />
-              <div className="text-3xl font-bold mb-2">$88,795</div>
-              <div className="text-slate-400 text-sm">Flujo acumulado 5 años</div>
+              <div className="text-3xl font-bold mb-2">$89,897</div>
+              <div className="text-slate-400 text-sm">Flujo acumulado en 5 años</div>
             </div>
-            
+
+            {/* VAN */}
             <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6">
               <TrendingUp className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold mb-2">845%</div>
-              <div className="text-slate-400 text-sm">Crecimiento ingresos (Año 1 vs Año 5)</div>
+              <div className="text-3xl font-bold mb-2">$12,266</div>
+              <div className="text-slate-400 text-sm">VAN (Valor Actual Neto)</div>
             </div>
-            
-            <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6">
-              <BarChart3 className="w-10 h-10 text-purple-400 mb-4" />
-              <div className="text-3xl font-bold mb-2">$28,310</div>
-              <div className="text-slate-400 text-sm">Cash Flow Año 5</div>
+
+            {/* TIR */}
+            <div className="bg-gradient-to-br from-amber-600/20 to-yellow-700/20 border border-amber-500/30 rounded-xl p-6">
+              <BarChart3 className="w-10 h-10 text-amber-400 mb-4" />
+              <div className="text-3xl font-bold mb-2">131%</div>
+              <div className="text-slate-400 text-sm">TIR (Tasa Interna de Retorno)</div>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
@@ -1144,7 +1138,7 @@ const Roadmap = () => {
       status: "Visión"
     }
   ];
-  
+
   return (
     <section className="py-20 bg-slate-950 text-white">
       <div className="container mx-auto px-6">
@@ -1155,10 +1149,10 @@ const Roadmap = () => {
               Plan de Crecimiento 2026-2027
             </h2>
           </div>
-          
+
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-amber-500"></div>
-            
+
             <div className="space-y-12">
               {phases.map((phase, idx) => (
                 <div key={idx} className={`flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
