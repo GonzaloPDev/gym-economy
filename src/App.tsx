@@ -1,922 +1,1053 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, DollarSign, Users, TrendingUp, AlertTriangle, Target, Wrench, Sparkles, Zap, BarChart3 } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, Zap, DollarSign, BarChart3, Target, Calendar, Smartphone, Globe, Heart, QrCode, CreditCard, LineChart } from 'lucide-react';
 
-
-
-const StatCard = ({ label, value, subtext, color = "blue" }) => {
-  const colors = {
-    blue: "from-blue-500 to-blue-600",
-    green: "from-green-500 to-green-600",
-    purple: "from-purple-500 to-purple-600",
-    orange: "from-orange-500 to-orange-600"
-  };
-
-  return (
-    <div className="relative group">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
-      <div className={`relative bg-gradient-to-br ${colors[color]} p-6 rounded-2xl shadow-lg text-white transform transition-all duration-300 hover:scale-105`}>
-        <p className="text-sm opacity-90 mb-2 font-medium">{label}</p>
-        <p className="text-4xl font-bold mb-1">{value}</p>
-        {subtext && <p className="text-xs opacity-80">{subtext}</p>}
-      </div>
-    </div>
-  );
-};
-
-const FeatureCard = ({ title, description, tech, color = "blue" }) => {
-  const colors = {
-    blue: "border-blue-200 bg-blue-50 hover:border-blue-400",
-    green: "border-green-200 bg-green-50 hover:border-green-400",
-    purple: "border-purple-200 bg-purple-50 hover:border-purple-400",
-    orange: "border-orange-200 bg-orange-50 hover:border-orange-400"
-  };
-
-  return (
-    <div className={`bg-white p-6 rounded-xl shadow-md border-2 ${colors[color]} transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}>
-      <h5 className="font-bold text-lg mb-3 flex items-center gap-2">
-        <Sparkles size={20} className={`text-${color}-600`} />
-        {title}
-      </h5>
-      <p className="text-sm text-gray-700 mb-3">{description}</p>
-      {tech && <p className="text-xs text-gray-500 italic"><strong>Tecnología:</strong> {tech}</p>}
-    </div>
-  );
-};
-
-const RiskCard = ({ severity, title, description, mitigation }) => {
-  const severityColors = {
-    ALTO: { badge: "bg-red-200 text-red-800", border: "border-red-300" },
-    MEDIO: { badge: "bg-orange-200 text-orange-800", border: "border-orange-300" },
-    BAJO: { badge: "bg-yellow-200 text-yellow-800", border: "border-yellow-300" }
-  };
-
-  return (
-    <div className={`bg-white p-5 rounded-xl shadow-md border-2 ${severityColors[severity].border} transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`}>
-      <div className="flex items-start gap-3">
-        <span className={`px-3 py-1 ${severityColors[severity].badge} rounded-lg text-sm font-bold`}>
-          {severity}
-        </span>
-        <div className="flex-1">
-          <p className="font-bold text-gray-800 mb-2">{title}</p>
-          <p className="text-sm text-gray-700 mb-3">{description}</p>
-          <div className="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-            <p className="text-sm text-blue-900"><strong>Mitigación:</strong> {mitigation}</p>
+// Hero Section
+const Hero = () => (
+  <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
+    <div className="absolute inset-0 bg-black opacity-30"></div>
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+    
+    <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-4xl">
+        <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
+          <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
+        </div>
+        
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Transforma tu gimnasio en una
+          <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> máquina digital</span>
+        </h1>
+        
+        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl">
+          SIG-FIT automatiza pagos, gestiona accesos, personaliza rutinas y crea comunidad. 
+          Todo en una plataforma escalable para gimnasios que quieren crecer.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
+            Solicitar Demo Gratis
+            <ArrowRight className="w-5 h-5" />
+          </button>
+          <button className="border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all">
+            Ver Presentación
+          </button>
+        </div>
+        
+        <div className="flex flex-wrap gap-8 text-sm">
+          <div className="flex items-center gap-2">
+            <Smartphone className="w-5 h-5 text-blue-300" />
+            <span>Android + iOS + Web</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Shield className="w-5 h-5 text-blue-300" />
+            <span>Infraestructura Escalable</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Zap className="w-5 h-5 text-blue-300" />
+            <span>Implementación en 48hs</span>
           </div>
         </div>
       </div>
     </div>
+  </section>
+);
+
+// Problem Section
+const Problem = () => (
+  <section className="py-20 bg-slate-50">
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto text-center mb-12">
+        <span className="text-red-600 font-semibold text-sm uppercase tracking-wide">El Problema</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
+          Los gimnasios pierden hasta un 15% de sus ingresos
+        </h2>
+        <p className="text-xl text-slate-600">
+          Por falta de seguimiento en renovaciones, control manual de pagos y deserción silenciosa de clientes
+        </p>
+      </div>
+      
+      <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+          <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <span className="text-3xl">📋</span>
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 mb-3">Gestión Manual</h3>
+          <p className="text-slate-600">
+            Planillas Excel desconectadas, cuadernos manuales y sistemas obsoletos que no escalan con el negocio
+          </p>
+        </div>
+        
+        <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+          <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <span className="text-3xl">💸</span>
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 mb-3">Pérdidas Constantes</h3>
+          <p className="text-slate-600">
+            Errores en cobros, morosidad por olvido y falta de visibilidad sobre el estado financiero real
+          </p>
+        </div>
+        
+        <div className="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+          <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <span className="text-3xl">👤</span>
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 mb-3">Baja Retención</h3>
+          <p className="text-slate-600">
+            Sin herramientas de engagement ni comunidad digital que mantenga motivados a los usuarios
+          </p>
+        </div>
+      </div>
+      
+      <div className="mt-12 text-center">
+        <div className="inline-block bg-red-50 border-2 border-red-200 rounded-lg px-6 py-4">
+          <p className="text-slate-700">
+            <span className="font-bold text-red-600">Los SaaS genéricos</span> no se adaptan a tu gimnasio.
+            <span className="font-bold text-red-600"> Los sistemas legacy</span> están obsoletos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// Value Proposition - 5 Layers
+const ValueProposition = () => {
+  const layers = [
+    {
+      icon: <Calendar className="w-8 h-8" />,
+      title: "Rutinas Personalizadas",
+      description: "Los entrenadores asignan planes específicos con videos de corrección técnica integrados en la app móvil"
+    },
+    {
+      icon: <CreditCard className="w-8 h-8" />,
+      title: "Pagos Automatizados",
+      description: "Integración con Mercado Pago: suscripciones automáticas y compras one-click. Adiós a la morosidad"
+    },
+    {
+      icon: <QrCode className="w-8 h-8" />,
+      title: "Acceso Inteligente",
+      description: "QR dinámicos que se integran con molinetes. Bloqueo automático por cuotas vencidas"
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "Gestión de Recursos",
+      description: "Horarios, lockers, clases grupales y balance financiero en tiempo real"
+    },
+    {
+      icon: <Heart className="w-8 h-8" />,
+      title: "Comunidad Digital",
+      description: "Red social interna: logros compartidos, comentarios y likes que fortalecen el engagement"
+    }
+  ];
+  
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">La Solución</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
+            5 Capas de Valor Integradas
+          </h2>
+          <p className="text-xl text-slate-600">
+            Una plataforma completa que transforma la operación y la experiencia del usuario
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {layers.map((layer, idx) => (
+            <div key={idx} className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-100 hover:border-blue-300 transition-all hover:shadow-xl">
+              <div className="w-16 h-16 bg-blue-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                {layer.icon}
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{layer.title}</h3>
+              <p className="text-slate-700">{layer.description}</p>
+            </div>
+          ))}
+          
+          <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-2xl text-white hover:shadow-2xl transition-all">
+            <div className="text-4xl mb-4">🎯</div>
+            <h3 className="text-2xl font-bold mb-3">Todo en Uno</h3>
+            <p className="text-blue-100 mb-4">
+              No necesitas 5 herramientas diferentes. SIG-FIT unifica todo en una experiencia coherente.
+            </p>
+            <div className="text-sm font-semibold text-blue-200">
+              Software a medida + Soporte continuo
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-const App = () => {
-  const [expandedSection, setExpandedSection] = useState(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleSection = (section) => {
-    setExpandedSection(expandedSection === section ? null : section);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
-      {/* Hero Header con parallax */}
-      <div 
-        className="relative overflow-hidden mb-8"
-        style={{ transform: `translateY(${scrollY * 0.5}px)` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 opacity-90"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6bTAtMTBjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+// Features Detail
+const Features = () => (
+  <section className="py-20 bg-slate-900 text-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-3xl mx-auto text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          Tecnología que escala contigo
+        </h2>
+        <p className="text-xl text-slate-300">
+          Arquitectura moderna, segura y pensada para el crecimiento
+        </p>
+      </div>
+      
+      <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div>
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <Globe className="w-8 h-8 text-blue-400" />
+            Multiplataforma Real
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">App Móvil Nativa:</span> React Native + Expo para Android e iOS
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Panel Web:</span> React + Shadcn/UI para administración
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Backend Robusto:</span> Django Rest Framework con API segura
+              </div>
+            </li>
+          </ul>
+        </div>
         
-        <div className="relative max-w-6xl mx-auto px-6 py-20 text-white">
-          <div className="flex items-center gap-3 mb-6 animate-fade-in">
-            <Zap size={40} className="text-yellow-300" />
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-              XtremeGym
-            </h1>
+        <div>
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <Shield className="w-8 h-8 text-purple-400" />
+            Seguridad Empresarial
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Endpoints Protegidos:</span> Decoradores de seguridad por rol
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Tests Automatizados:</span> Integración continua en flujos críticos
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">PostgreSQL:</span> Base de datos relacional con integridad
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <Zap className="w-8 h-8 text-yellow-400" />
+            Integraciones Poderosas
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Mercado Pago API:</span> Pagos automáticos y one-click
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Firebase Cloud Messaging:</span> Notificaciones en tiempo real
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">QR Dinámicos:</span> Control de acceso físico automatizado
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <TrendingUp className="w-8 h-8 text-green-400" />
+            Escalabilidad Garantizada
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Kubernetes Cluster:</span> Infraestructura que crece contigo
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">CDN Global:</span> Carga rápida en cualquier ubicación
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <span className="font-semibold">Monitoreo 24/7:</span> Alertas automáticas y backups diarios
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// Comparison Table
+const Comparison = () => (
+  <section className="py-20 bg-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-3xl mx-auto text-center mb-16">
+        <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Comparativa</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
+          ¿Por qué elegir SIG-FIT?
+        </h2>
+      </div>
+      
+      <div className="max-w-5xl mx-auto overflow-x-auto">
+        <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-xl">
+          <thead>
+            <tr className="bg-slate-100">
+              <th className="p-4 text-left font-bold text-slate-900">Característica</th>
+              <th className="p-4 text-center font-bold text-slate-600">Software Legacy</th>
+              <th className="p-4 text-center font-bold text-slate-600">SaaS Global</th>
+              <th className="p-4 text-center font-bold text-blue-600 bg-blue-50">SIG-FIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { feature: "App Móvil Nativa", legacy: "❌", saas: "✅", sigfit: "✅" },
+              { feature: "Personalización Profunda", legacy: "❌", saas: "❌", sigfit: "✅" },
+              { feature: "Pagos Automáticos", legacy: "❌", saas: "✅", sigfit: "✅" },
+              { feature: "Red Social Integrada", legacy: "❌", saas: "❌", sigfit: "✅" },
+              { feature: "Control de Acceso QR", legacy: "❌", saas: "⚠️", sigfit: "✅" },
+              { feature: "Soporte Dedicado", legacy: "⚠️", saas: "⚠️", sigfit: "✅" },
+              { feature: "Precios en ARS", legacy: "✅", saas: "❌", sigfit: "✅" },
+              { feature: "Evolución Continua", legacy: "❌", saas: "⚠️", sigfit: "✅" }
+            ].map((row, idx) => (
+              <tr key={idx} className="border-t border-slate-200 hover:bg-slate-50">
+                <td className="p-4 font-medium text-slate-900">{row.feature}</td>
+                <td className="p-4 text-center text-2xl">{row.legacy}</td>
+                <td className="p-4 text-center text-2xl">{row.saas}</td>
+                <td className="p-4 text-center text-2xl bg-blue-50">{row.sigfit}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+);
+
+// Testimonials
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Carlos Méndez",
+      role: "Dueño - Fitness Center Norte",
+      image: "👨‍💼",
+      quote: "Redujimos la morosidad en un 80% en solo 3 meses. El sistema de pagos automáticos es increíble."
+    },
+    {
+      name: "Ana Rodríguez",
+      role: "Gerente - MegaGym",
+      image: "👩‍💼",
+      quote: "La red social interna mejoró notablemente la retención. Los usuarios se sienten parte de una comunidad."
+    },
+    {
+      name: "Roberto Silva",
+      role: "Director - Iron Training",
+      image: "🧑‍💼",
+      quote: "Pasamos de Excel a una plataforma profesional. Ahora tenemos visibilidad total de nuestro negocio."
+    }
+  ];
+  
+  return (
+    <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <div className="container mx-auto px-6">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Casos de Éxito</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">
+            Gimnasios que ya transformaron su gestión
+          </h2>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {testimonials.map((t, idx) => (
+            <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="text-5xl mb-4">{t.image}</div>
+              <p className="text-slate-700 italic mb-6">"{t.quote}"</p>
+              <div>
+                <div className="font-bold text-slate-900">{t.name}</div>
+                <div className="text-sm text-slate-600">{t.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <div className="inline-block bg-white rounded-xl p-8 shadow-lg">
+            <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
+            <div className="text-slate-600">Margen de rentabilidad promedio de nuestros clientes</div>
           </div>
-          <p className="text-2xl md:text-3xl font-light mb-4 opacity-90">
-            Sistema Integral de Gestión para Gimnasios
-          </p>
-          <p className="text-xl opacity-80 mb-8">
-            Transformación Digital del Sector Fitness
+        </div>
+      </div>
+    </section>
+);
+};
+
+// Pricing
+const Pricing = () => {
+  const [annual, setAnnual] = useState(false);
+  
+  return (
+    <section className="py-20 bg-slate-900 text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wide">Planes</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+            Precios transparentes y justos
+          </h2>
+          <p className="text-xl text-slate-300 mb-8">
+            Sin costos ocultos. Sin sorpresas. Elige el modelo que mejor se adapte a tu negocio.
           </p>
           
-          <div className="flex flex-wrap gap-4 mb-8">
-            <div className="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-md rounded-full font-semibold">
-              📱 Multiplataforma
-            </div>
-            <div className="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-md rounded-full font-semibold">
-              🚀 Software a Medida
-            </div>
-            <div className="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-md rounded-full font-semibold">
-              💰 ROI Excepcional
-            </div>
-          </div>
-
-          <div className="text-sm opacity-75 space-y-1">
-            <p>📚 Trabajo Final de Modelo de Negocios y Finanzas</p>
-            <p>🎓 Estudiantes de Ingeniería en Sistemas</p>
+          <div className="inline-flex items-center gap-4 bg-slate-800 p-2 rounded-lg">
+            <button 
+              onClick={() => setAnnual(false)}
+              className={`px-6 py-2 rounded-md transition-all ${!annual ? 'bg-blue-600 text-white' : 'text-slate-300'}`}
+            >
+              Mensual
+            </button>
+            <button 
+              onClick={() => setAnnual(true)}
+              className={`px-6 py-2 rounded-md transition-all ${annual ? 'bg-blue-600 text-white' : 'text-slate-300'}`}
+            >
+              Anual <span className="text-green-400 text-sm ml-2">(ahorra 15%)</span>
+            </button>
           </div>
         </div>
-
-        {/* Decorative wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" className="w-full h-16 fill-current text-slate-100">
-            <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-          </svg>
+        
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* SaaS Plan */}
+          <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-1 rounded-2xl">
+            <div className="bg-slate-800 p-8 rounded-2xl h-full">
+              <div className="text-sm font-semibold text-blue-400 mb-2">MODELO SAAS</div>
+              <h3 className="text-3xl font-bold mb-4">Suscripción Cloud</h3>
+              <div className="mb-6">
+                <div className="text-5xl font-bold mb-2">
+                  ${annual ? '460' : '45'}
+                  <span className="text-2xl text-slate-400">/{annual ? 'año' : 'mes'}</span>
+                </div>
+                <div className="text-slate-400 text-sm">Setup inicial: $700 USD</div>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span>Infraestructura compartida escalable</span>
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span>Actualizaciones automáticas</span>
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span>Backups diarios incluidos</span>
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span>Soporte técnico prioritario</span>
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span>Sin costos de servidor</span>
+                </li>
+              </ul>
+              
+              <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all">
+                Empezar Ahora
+              </button>
+            </div>
+          </div>
+          
+          {/* License Plan */}
+          <div className="bg-slate-800 p-8 rounded-2xl border-2 border-slate-700">
+            <div className="text-sm font-semibold text-slate-400 mb-2">LICENCIA PERPETUA</div>
+            <h3 className="text-3xl font-bold mb-4">Instalación Propia</h3>
+            <div className="mb-6">
+              <div className="text-5xl font-bold mb-2">
+                $700
+                <span className="text-2xl text-slate-400"> único</span>
+              </div>
+              <div className="text-slate-400 text-sm">Mantenimiento opcional: $110/año</div>
+            </div>
+            
+            <ul className="space-y-4 mb-8">
+              <li className="flex gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <span>Servidor dedicado para tu gimnasio</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <span>Control total de los datos</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <span>Personalización extrema del código</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <span>Ideal para gimnasios con IT propio</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                <span>Actualizaciones bajo demanda</span>
+              </li>
+            </ul>
+            
+            <button className="w-full border-2 border-slate-600 py-4 rounded-lg font-semibold hover:bg-slate-700 transition-all">
+              Consultar Licencia
+            </button>
+          </div>
+        </div>
+        
+        <div className="mt-12 text-center">
+          <p className="text-slate-400 mb-4">¿No estás seguro cuál elegir?</p>
+          <button className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 mx-auto">
+            Habla con nuestro equipo
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
+    </section>
+  );
+};
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-12 relative z-10">
-        {/* Quick Stats Overview */}
-        <div className="mb-12 grid md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow-xl border-2 border-blue-200 text-center transform hover:scale-105 transition-all duration-300">
-            <p className="text-sm text-gray-600 mb-2">Inversión Inicial</p>
-            <p className="text-3xl font-bold text-blue-600">$125</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-xl border-2 border-green-200 text-center transform hover:scale-105 transition-all duration-300">
-            <p className="text-sm text-gray-600 mb-2">TIR</p>
-            <p className="text-3xl font-bold text-green-600">1,750%</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-xl border-2 border-purple-200 text-center transform hover:scale-105 transition-all duration-300">
-            <p className="text-sm text-gray-600 mb-2">Retorno 5 años</p>
-            <p className="text-3xl font-bold text-purple-600">$94k</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-xl border-2 border-orange-200 text-center transform hover:scale-105 transition-all duration-300">
-            <p className="text-sm text-gray-600 mb-2">Payback</p>
-            <p className="text-3xl font-bold text-orange-600">&lt; 1 año</p>
+// Demo CTA
+const DemoCTA = () => (
+  <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          Agenda una demo consultiva gratuita
+        </h2>
+        <p className="text-xl text-blue-100 mb-8">
+          Te mostramos cómo SIG-FIT puede transformar tu gimnasio en una sesión personalizada de 30 minutos
+        </p>
+        
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 text-left">
+            <div>
+              <div className="text-4xl mb-3">🎯</div>
+              <h3 className="font-bold mb-2">Diagnóstico</h3>
+              <p className="text-blue-100 text-sm">Analizamos tu situación actual y necesidades específicas</p>
+            </div>
+            <div>
+              <div className="text-4xl mb-3">💡</div>
+              <h3 className="font-bold mb-2">Demo Personalizada</h3>
+              <p className="text-blue-100 text-sm">Mostramos funciones relevantes para tu caso</p>
+            </div>
+            <div>
+              <div className="text-4xl mb-3">📊</div>
+              <h3 className="font-bold mb-2">Plan de Acción</h3>
+              <p className="text-blue-100 text-sm">Proyectamos ROI y plan de implementación</p>
+            </div>
           </div>
         </div>
+        
+        <button className="bg-white text-blue-900 px-12 py-5 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-2xl hover:shadow-3xl inline-flex items-center gap-3">
+          Solicitar Demo Gratuita
+          <ArrowRight className="w-6 h-6" />
+        </button>
+        
+        <p className="text-blue-200 text-sm mt-6">
+          ✅ Sin compromiso • ✅ 30 días de garantía • ✅ Implementación en 48hs
+        </p>
+      </div>
+    </div>
+  </section>
+);
 
-        <AnimatedSection
-          id="intro"
-          title="1. INTRODUCCIÓN"
-          icon={Target}
-          gradient="from-blue-600 to-blue-800"
-          isExpanded={expandedSection === 'intro'}
-          onToggle={() => toggleSection('intro')}
-        >
-          <div className="space-y-6">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              La gestión administrativa de gimnasios se ha mantenido tradicionalmente en métodos manuales
-              y sistemas desactualizados que generan ineficiencias operativas, pérdidas económicas por
-              errores en el control de pagos, y una experiencia limitada para los usuarios. En gimnasios
-              ubicados fuera de las grandes ciudades, esta problemática se agudiza por la falta de acceso
-              a soluciones tecnológicas modernas y accesibles.
+// Investor Section Divider
+const InvestorDivider = () => (
+  <section className="py-12 bg-slate-950">
+    <div className="container mx-auto px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <div className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-sm mb-6">
+          🚀 OPORTUNIDAD DE INVERSIÓN
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Un mercado en expansión con un modelo probado
+        </h2>
+        <p className="text-slate-400 text-lg">
+          Conoce los números detrás de SIG-FIT y por qué es una oportunidad estratégica
+        </p>
+      </div>
+    </div>
+  </section>
+);
+
+// Market Opportunity
+const MarketOpportunity = () => (
+  <section className="py-20 bg-slate-950 text-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Mercado Objetivo</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              El fitness está creciendo, pero la tecnología no
+            </h2>
+            <p className="text-slate-300 text-lg mb-6">
+              Gimnasios medianos y grandes (&gt;5M ARS mensuales) están atrapados entre Excel y SaaS rígidos que no se adaptan.
             </p>
-
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-200 shadow-lg">
-              <h3 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
-                <Sparkles className="text-blue-600" />
-                Cinco Capas de Valor Integradas
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <FeatureCard
-                  title="Gestión de Rutinas"
-                  description="Los entrenadores asignan planes específicos según las necesidades de cada usuario, con videos de corrección técnica integrados."
-                  color="blue"
-                />
-                <FeatureCard
-                  title="Pagos Digitales"
-                  description="Integración con Mercado Pago para suscripciones automáticas y compras one-click, eliminando la morosidad."
-                  color="green"
-                />
-                <FeatureCard
-                  title="Control de Acceso"
-                  description="Sistema de QR integrado con molinetes para gestión automatizada de asistencias."
-                  color="purple"
-                />
-                <FeatureCard
-                  title="Gestión de Recursos"
-                  description="Administración de horarios, lockers y capacidad de clases en tiempo real."
-                  color="orange"
-                />
-              </div>
-              <div className="mt-4">
-                <FeatureCard
-                  title="Comunidad Digital"
-                  description="Red social interna que fortalece el engagement y la retención de usuarios."
-                  color="blue"
-                />
-              </div>
+            <p className="text-slate-400">
+              Existe una brecha tecnológica clara: son demasiado grandes para gestión manual, pero requieren flujos muy específicos que los SaaS globales no cubren.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-6">
+              <div className="text-4xl font-bold text-amber-400 mb-2">15%</div>
+              <div className="text-slate-300 text-sm">Pérdida promedio de ingresos por gestión manual</div>
             </div>
-
-            <div className="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-xl border-l-4 border-green-500 shadow-md">
-              <p className="font-bold text-green-900 mb-2 text-lg">✨ Diferenciación Clave</p>
-              <p className="text-gray-800">
-                A diferencia de las aplicaciones genéricas disponibles en el mercado, XtremeGym es un
-                <strong> software a medida</strong> multiplataforma (Android, iOS, Windows) que se adapta
-                completamente a las necesidades específicas de cada gimnasio, ofreciendo personalización
-                total y soporte continuo.
-              </p>
+            <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-xl p-6">
+              <div className="text-4xl font-bold text-blue-400 mb-2">80%</div>
+              <div className="text-slate-300 text-sm">De gimnasios aún usan planillas Excel</div>
+            </div>
+            <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl p-6">
+              <div className="text-4xl font-bold text-green-400 mb-2">3-6</div>
+              <div className="text-slate-300 text-sm">Meses promedio de retorno de inversión</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-xl p-6">
+              <div className="text-4xl font-bold text-purple-400 mb-2">$45</div>
+              <div className="text-slate-300 text-sm">USD/mes modelo SaaS escalable</div>
             </div>
           </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="canvas"
-          title="2. MODELO DE NEGOCIOS"
-          icon={Target}
-          gradient="from-purple-600 to-purple-800"
-          isExpanded={expandedSection === 'canvas'}
-          onToggle={() => toggleSection('canvas')}
-        >
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-300 shadow-xl">
-              <h4 className="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
-                <BarChart3 size={32} className="text-blue-600" />
-                2.1. Propuesta de Valor
-              </h4>
-              
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                  <h5 className="font-bold text-xl text-blue-800 mb-4">Problema Actual de la Industria</h5>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start gap-3">
-                      <span className="text-2xl">💸</span>
-                      <span>Pérdidas económicas por mal manejo de pagos y control manual de membresías</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-2xl">📋</span>
-                      <span>Sistemas administrativos obsoletos basados en planillas y papel</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-2xl">📱</span>
-                      <span>Falta de herramientas digitales que mejoren la experiencia del usuario</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-2xl">⚡</span>
-                      <span>Sobrecarga de trabajo administrativo que impide a los profesores enfocarse en el entrenamiento</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-2xl">📉</span>
-                      <span>Baja retención de clientes por falta de engagement digital</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="bg-gradient-to-r from-green-400 to-blue-500 p-8 rounded-2xl shadow-xl text-white">
-                  <h5 className="font-bold text-2xl mb-4">💎 Qué Hace Diferente a XtremeGym</h5>
-                  <div className="grid md:grid-cols-2 gap-4 mb-6">
-                    <div className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl">
-                      <p className="font-bold mb-2">🎯 Gestión Completa</p>
-                      <p className="text-sm">Rutinas, clases, asistencia, pagos, lockers en un solo lugar</p>
-                    </div>
-                    <div className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl">
-                      <p className="font-bold mb-2">💳 Pagos Inteligentes</p>
-                      <p className="text-sm">Integración Mercado Pago, suscripciones automáticas</p>
-                    </div>
-                    <div className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl">
-                      <p className="font-bold mb-2">🤖 Automatización Total</p>
-                      <p className="text-sm">QR acceso, notificaciones push, recordatorios</p>
-                    </div>
-                    <div className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl">
-                      <p className="font-bold mb-2">👥 Comunidad Digital</p>
-                      <p className="text-sm">Red social interna para engagement</p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white bg-opacity-30 backdrop-blur-md p-6 rounded-xl border-2 border-white border-opacity-40">
-                    <p className="font-bold text-xl mb-2">🎯 Slogan de XtremeGym</p>
-                    <p className="italic text-lg">
-                      "Transformamos la gestión tradicional de gimnasios en una experiencia digital completa,
-                      automatizando operaciones, maximizando ingresos y creando comunidades fitness comprometidas."
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                  <h5 className="font-bold text-xl text-purple-800 mb-4">🏆 Beneficios Directos Medibles</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="p-4 bg-green-50 rounded-lg border-2 border-green-200">
-                      <p className="font-bold text-green-800 mb-1">📉 90% reducción</p>
-                      <p className="text-sm text-gray-700">en errores de pago y morosidad</p>
-                    </div>
-                    <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
-                      <p className="font-bold text-blue-800 mb-1">💰 $500-800/mes ahorro</p>
-                      <p className="text-sm text-gray-700">Eliminación de recepcionista</p>
-                    </div>
-                    <div className="p-4 bg-purple-50 rounded-lg border-2 border-purple-200">
-                      <p className="font-bold text-purple-800 mb-1">📈 +30% conversión</p>
-                      <p className="text-sm text-gray-700">por facilidad de compra one-click</p>
-                    </div>
-                    <div className="p-4 bg-orange-50 rounded-lg border-2 border-orange-200">
-                      <p className="font-bold text-orange-800 mb-1">🎯 +25% retención</p>
-                      <p className="text-sm text-gray-700">gracias a comunidad y automatización</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+        
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold mb-6">Ventaja Competitiva Sostenible</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <div className="text-3xl mb-3">🎯</div>
+              <h4 className="font-bold mb-2">Nicho Especializado</h4>
+              <p className="text-slate-400 text-sm">No competimos con gigantes tech. Atacamos un segmento ignorado.</p>
             </div>
-
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border-2 border-green-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-green-900 mb-6">2.2. Segmentos de Clientes</h4>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 bg-white p-5 rounded-xl shadow-md">
-                  <span className="text-3xl">🏋️</span>
-                  <div>
-                    <p className="font-bold text-lg">Gimnasios Medianos/Grandes</p>
-                    <p className="text-gray-700">100-500+ socios, con infraestructura establecida</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 bg-white p-5 rounded-xl shadow-md">
-                  <span className="text-3xl">📍</span>
-                  <div>
-                    <p className="font-bold text-lg">Ubicación Estratégica</p>
-                    <p className="text-gray-700">Ciudades medianas y zonas semi-urbanas sin competencia digital</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 bg-white p-5 rounded-xl shadow-md">
-                  <span className="text-3xl">💡</span>
-                  <div>
-                    <p className="font-bold text-lg">Perfil Ideal</p>
-                    <p className="text-gray-700">Dueños/administradores con mentalidad innovadora y ganas de crecer</p>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <div className="text-3xl mb-3">🛠️</div>
+              <h4 className="font-bold mb-2">Boutique de Software</h4>
+              <p className="text-slate-400 text-sm">Personalización profunda que los SaaS globales no pueden ofrecer.</p>
             </div>
-
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl border-2 border-yellow-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-yellow-900 mb-6">2.5. Fuentes de Ingresos</h4>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-blue-200">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      1
-                    </div>
-                    <h5 className="font-bold text-xl">Modelo SaaS</h5>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="p-3 bg-blue-50 rounded-lg">
-                      <p className="font-semibold text-blue-900">Plan Básico</p>
-                      <p className="text-2xl font-bold text-blue-700">$150-250/mes</p>
-                      <p className="text-sm text-gray-600">hasta 200 usuarios</p>
-                    </div>
-                    <div className="p-3 bg-blue-50 rounded-lg">
-                      <p className="font-semibold text-blue-900">Plan Pro</p>
-                      <p className="text-2xl font-bold text-blue-700">$300-450/mes</p>
-                      <p className="text-sm text-gray-600">hasta 500 usuarios</p>
-                    </div>
-                    <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg text-white">
-                      <p className="font-semibold">Plan Enterprise</p>
-                      <p className="text-2xl font-bold">$500-800/mes</p>
-                      <p className="text-sm opacity-90">+500 usuarios + custom</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-green-200">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      2
-                    </div>
-                    <h5 className="font-bold text-xl">Licencia Única</h5>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="p-3 bg-green-50 rounded-lg">
-                      <p className="font-semibold text-green-900">Licencia Base</p>
-                      <p className="text-2xl font-bold text-green-700">$3,000-5,000</p>
-                      <p className="text-sm text-gray-600">Pago único</p>
-                    </div>
-                    <div className="p-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg text-white">
-                      <p className="font-semibold">Licencia Premium</p>
-                      <p className="text-2xl font-bold">$6,000-10,000</p>
-                      <p className="text-sm opacity-90">Con personalizaciones</p>
-                    </div>
-                    <div className="p-3 bg-gray-50 rounded-lg border border-gray-300">
-                      <p className="text-sm text-gray-700">✅ 6 meses actualizaciones gratis</p>
-                      <p className="text-sm text-gray-700">💰 Post: $50-100/mes opcional</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <div className="text-3xl mb-3">🤝</div>
+              <h4 className="font-bold mb-2">Relación Directa</h4>
+              <p className="text-slate-400 text-sm">Soporte dedicado y evolución conjunta con cada cliente.</p>
             </div>
           </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="financial"
-          title="3. PLAN FINANCIERO"
-          icon={DollarSign}
-          gradient="from-green-600 to-green-800"
-          isExpanded={expandedSection === 'financial'}
-          onToggle={() => toggleSection('financial')}
-        >
-          <div className="space-y-8">
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <StatCard
-                label="VAN (Tasa 10%)"
-                value="$78,453"
-                subtext="Valor Actual Neto"
-                color="green"
-              />
-              <StatCard
-                label="TIR"
-                value="1,750%"
-                subtext="Tasa Interna de Retorno"
-                color="blue"
-              />
-              <StatCard
-                label="Payback"
-                value="< 1 año"
-                subtext="Período de Recupero"
-                color="purple"
-              />
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-blue-200">
-              <h4 className="text-2xl font-bold text-blue-900 mb-6">Proyección de Ingresos (5 años)</h4>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b-2 border-blue-300 bg-blue-50">
-                      <th className="text-left p-4 font-bold">Año</th>
-                      <th className="text-right p-4 font-bold">Clientes</th>
-                      <th className="text-right p-4 font-bold">Ingresos SaaS</th>
-                      <th className="text-right p-4 font-bold">Ingresos Licencia</th>
-                      <th className="text-right p-4 font-bold">Total Anual</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b hover:bg-gray-50">
-                      <td className="p-4 font-semibold">1</td>
-                      <td className="text-right p-4">1</td>
-                      <td className="text-right p-4">$3,600</td>
-                      <td className="text-right p-4">$0</td>
-                      <td className="text-right p-4 font-bold text-green-600">$3,600</td>
-                    </tr>
-                    <tr className="border-b hover:bg-gray-50">
-                      <td className="p-4 font-semibold">2</td>
-                      <td className="text-right p-4">4</td>
-                      <td className="text-right p-4">$8,640</td>
-                      <td className="text-right p-4">$5,000</td>
-                      <td className="text-right p-4 font-bold text-green-600">$13,640</td>
-                    </tr>
-                    <tr className="border-b hover:bg-gray-50">
-                      <td className="p-4 font-semibold">3</td>
-                      <td className="text-right p-4">7</td>
-                      <td className="text-right p-4">$15,120</td>
-                      <td className="text-right p-4">$5,000</td>
-                      <td className="text-right p-4 font-bold text-green-600">$20,120</td>
-                    </tr>
-                    <tr className="border-b hover:bg-gray-50">
-                      <td className="p-4 font-semibold">4</td>
-                      <td className="text-right p-4">11</td>
-                      <td className="text-right p-4">$23,760</td>
-                      <td className="text-right p-4">$10,000</td>
-                      <td className="text-right p-4 font-bold text-green-600">$33,760</td>
-                    </tr>
-                    <tr className="bg-green-100 hover:bg-green-200">
-                      <td className="p-4 font-bold">5</td>
-                      <td className="text-right p-4 font-bold">16</td>
-                      <td className="text-right p-4 font-bold">$34,560</td>
-                      <td className="text-right p-4 font-bold">$15,000</td>
-                      <td className="text-right p-4 font-bold text-green-700 text-xl">$49,560</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border-2 border-purple-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-purple-900 mb-6">Flujo de Fondos Acumulado</h4>
-              <div className="space-y-4">
-                {[
-                  { year: 0, amount: -125, color: 'red' },
-                  { year: 1, amount: 2084, color: 'green' },
-                  { year: 2, amount: 11808, color: 'green' },
-                  { year: 3, amount: 26437, color: 'green' },
-                  { year: 4, amount: 53031, color: 'green' },
-                  { year: 5, amount: 93955, color: 'green' }
-                ].map((item) => (
-                  <div key={item.year} className="flex items-center gap-4">
-                    <div className="w-20 text-center font-bold text-gray-700">
-                      Año {item.year}
-                    </div>
-                    <div className="flex-1 bg-white rounded-full h-12 overflow-hidden shadow-md relative">
-                      <div 
-                        className={`h-full bg-gradient-to-r ${item.color === 'green' ? 'from-green-400 to-green-600' : 'from-red-400 to-red-600'} flex items-center justify-end pr-4 text-white font-bold transition-all duration-1000`}
-                        style={{ width: item.year === 0 ? '5%' : `${Math.min((Math.abs(item.amount) / 100000) * 100, 100)}%` }}
-                      >
-                        <span className="drop-shadow-lg">${item.amount.toLocaleString()}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 p-8 rounded-2xl shadow-2xl text-white">
-              <h4 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <TrendingUp size={32} />
-                Conclusión Financiera
-              </h4>
-              <p className="text-lg leading-relaxed">
-                El proyecto XtremeGym presenta una <strong>rentabilidad excepcional</strong> con inversión inicial mínima ($125),
-                recuperación inmediata y flujos positivos desde el primer año. La TIR extremadamente alta refleja
-                el bajo capital inicial y el potencial de escalamiento con costos marginales reducidos.
-              </p>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="risks"
-          title="4. ANÁLISIS DE RIESGOS"
-          icon={AlertTriangle}
-          gradient="from-red-600 to-red-800"
-          isExpanded={expandedSection === 'risks'}
-          onToggle={() => toggleSection('risks')}
-        >
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border-2 border-red-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-red-900 mb-6">4.1. Riesgos Técnicos</h4>
-              <div className="space-y-4">
-                <RiskCard
-                  severity="MEDIO"
-                  title="Bugs críticos en producción"
-                  description="Errores en sistema de pagos o acceso podrían generar insatisfacción del cliente."
-                  mitigation="Testing exhaustivo, staging environment, rollback automático, monitoreo 24/7 con alertas."
-                />
-                <RiskCard
-                  severity="BAJO"
-                  title="Escalabilidad técnica"
-                  description="Sistema podría saturarse si un gimnasio crece exponencialmente (+1000 usuarios)."
-                  mitigation="Arquitectura cloud escalable (AWS auto-scaling), optimización de queries, CDN para assets."
-                />
-                <RiskCard
-                  severity="BAJO"
-                  title="Dependencia de APIs terceros"
-                  description="Cambios en API de Mercado Pago, Firebase o servicios críticos."
-                  mitigation="Abstracción de servicios, fallbacks, múltiples proveedores de pago como backup."
-                />
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl border-2 border-orange-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-orange-900 mb-6">4.2. Riesgos de Mercado</h4>
-              <div className="space-y-4">
-                <RiskCard
-                  severity="ALTO"
-                  title="Resistencia al cambio del sector"
-                  description="Gimnasios tradicionales pueden rechazar digitalización por desconfianza o desconocimiento."
-                  mitigation="Demos gratis 30 días, casos de éxito documentados, testimonials en video, garantía de devolución primer mes."
-                />
-                <RiskCard
-                  severity="MEDIO"
-                  title="Aparición de competidores"
-                  description="Empresas grandes podrían desarrollar soluciones similares con más recursos."
-                  mitigation="Ventaja first-mover en nichos rurales, personalización extrema, relación cercana cliente, innovación continua."
-                />
-                <RiskCard
-                  severity="BAJO"
-                  title="Desaceleración económica"
-                  description="Crisis económica podría reducir inversión de gimnasios en tecnología."
-                  mitigation="Enfatizar ROI y ahorros operativos, planes de pago flexibles, modelo de licencia única."
-                />
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border-2 border-purple-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-purple-900 mb-6">4.4. Riesgos Financieros</h4>
-              <div className="space-y-4">
-                <RiskCard
-                  severity="ALTO"
-                  title="Inflación y devaluación (Argentina)"
-                  description="Contratos en pesos pierden valor real, costos en USD (licencias) se encarecen."
-                  mitigation="Facturación en USD, cláusulas de ajuste por inflación, conversión inmediata a moneda dura."
-                />
-                <RiskCard
-                  severity="MEDIO"
-                  title="Demora en cobros"
-                  description="Clientes podrían retrasar pagos de licencias o cancelar suscripciones."
-                  mitigation="Pago anticipado 50%, cláusulas contractuales claras, suspensión automática por falta de pago."
-                />
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="agile"
-          title="5. METODOLOGÍA ÁGIL Y GESTIÓN"
-          icon={Wrench}
-          gradient="from-indigo-600 to-indigo-800"
-          isExpanded={expandedSection === 'agile'}
-          onToggle={() => toggleSection('agile')}
-        >
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-blue-900 mb-6">5.1. Metodología de Desarrollo</h4>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-blue-200">
-                  <h5 className="font-bold text-xl text-blue-800 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🏃</span> Scrum
-                  </h5>
-                  <ul className="space-y-2 text-gray-700 text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">•</span>
-                      <span><strong>Sprints:</strong> 2 semanas con objetivos claros</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">•</span>
-                      <span><strong>Ceremonias:</strong> Planning, Daily async, Review, Retrospectiva</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">•</span>
-                      <span><strong>Definition of Done:</strong> Testeado, documentado, deployado</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-purple-200">
-                  <h5 className="font-bold text-xl text-purple-800 mb-4 flex items-center gap-2">
-                    <span className="text-2xl">📋</span> Kanban
-                  </h5>
-                  <ul className="space-y-2 text-gray-700 text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-purple-600 font-bold">•</span>
-                      <span><strong>Tablero:</strong> Por Hacer → En Progreso → Testing → Resuelto</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-purple-600 font-bold">•</span>
-                      <span><strong>WIP Limits:</strong> Máximo 3 tickets simultáneos</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-purple-600 font-bold">•</span>
-                      <span><strong>SLA:</strong> P1 &lt;4h, P2 &lt;24h, P3 &lt;72h</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border-2 border-purple-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-purple-900 mb-6">5.3. KPIs de Gestión</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h5 className="font-bold text-lg mb-4 flex items-center gap-2">
-                    <BarChart3 className="text-blue-600" />
-                    Desarrollo
-                  </h5>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between p-2 bg-blue-50 rounded">
-                      <span>Code coverage</span>
-                      <span className="font-bold text-blue-700">&gt;70%</span>
-                    </div>
-                    <div className="flex justify-between p-2 bg-blue-50 rounded">
-                      <span>Deployment freq.</span>
-                      <span className="font-bold text-blue-700">1/semana</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h5 className="font-bold text-lg mb-4 flex items-center gap-2">
-                    <DollarSign className="text-green-600" />
-                    Negocio
-                  </h5>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between p-2 bg-green-50 rounded">
-                      <span>Conversión demos</span>
-                      <span className="font-bold text-green-700">&gt;30%</span>
-                    </div>
-                    <div className="flex justify-between p-2 bg-green-50 rounded">
-                      <span>NPS</span>
-                      <span className="font-bold text-green-700">&gt;50</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="ai"
-          title="6. INTEGRACIÓN DE IA"
-          icon={TrendingUp}
-          gradient="from-cyan-600 to-cyan-800"
-          isExpanded={expandedSection === 'ai'}
-          onToggle={() => toggleSection('ai')}
-        >
-          <div className="space-y-8">
-            <div className="bg-gradient-to-r from-cyan-100 to-blue-100 p-8 rounded-2xl border-2 border-cyan-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-cyan-900 mb-6">6.1. IA en el Producto</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <FeatureCard
-                  title="Recomendación de Rutinas"
-                  description="Personalizar planes basándose en objetivos, historial y progreso del usuario."
-                  tech="Machine Learning (collaborative filtering, regresión)"
-                  color="blue"
-                />
-                <FeatureCard
-                  title="Predicción de Churn"
-                  description="Identificar usuarios con alta probabilidad de abandonar para intervención proactiva."
-                  tech="Random Forest, XGBoost, alertas automáticas"
-                  color="purple"
-                />
-                <FeatureCard
-                  title="Optimización de Horarios"
-                  description="Sugerir horarios óptimos basándose en patrones históricos de asistencia."
-                  tech="Análisis de series temporales"
-                  color="green"
-                />
-                <FeatureCard
-                  title="Asistente Virtual (Chatbot)"
-                  description="Resolver consultas frecuentes 24/7 sin intervención humana."
-                  tech="NLP (GPT-4 API, fine-tuning)"
-                  color="orange"
-                />
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border-2 border-purple-300 shadow-xl">
-              <h4 className="text-2xl font-bold text-purple-900 mb-6">Roadmap de Implementación IA</h4>
-              <div className="space-y-4">
-                {[
-                  { phase: 'Año 1-2', feature: 'Chatbot FAQ, Reportes automáticos', complexity: 'Baja', impact: 'Alto' },
-                  { phase: 'Año 2-3', feature: 'Predicción churn, Anomaly detection', complexity: 'Media', impact: 'Alto' },
-                  { phase: 'Año 3-4', feature: 'Recomendación rutinas, Optimización', complexity: 'Alta', impact: 'Muy Alto' },
-                  { phase: 'Año 4-5', feature: 'Gemelo digital, Simulaciones', complexity: 'Muy Alta', impact: 'Diferenciador' }
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-white p-5 rounded-xl shadow-lg flex items-center gap-4 hover:scale-[1.02] transition-transform duration-300">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      {idx + 1}
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-bold text-lg">{item.phase}</p>
-                      <p className="text-gray-700">{item.feature}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        item.complexity === 'Baja' ? 'bg-yellow-200 text-yellow-800' :
-                        item.complexity === 'Media' ? 'bg-orange-200 text-orange-800' :
-                        'bg-red-200 text-red-800'
-                      }`}>
-                        {item.complexity}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-8 rounded-2xl shadow-2xl text-white">
-              <h4 className="text-2xl font-bold mb-6">💎 Impacto Esperado de IA</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white bg-opacity-20 backdrop-blur-md p-6 rounded-xl">
-                  <p className="font-bold text-xl mb-4">Para el Cliente</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>✅ +20% retención de usuarios</li>
-                    <li>✅ +15% engagement</li>
-                    <li>✅ -50% tiempo administrativo</li>
-                    <li>✅ Decisiones basadas en datos</li>
-                  </ul>
-                </div>
-                <div className="bg-white bg-opacity-20 backdrop-blur-md p-6 rounded-xl">
-                  <p className="font-bold text-xl mb-4">Para XtremeGym</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>✅ Diferenciación sostenible</li>
-                    <li>✅ -60% costos de soporte</li>
-                    <li>✅ Precio premium justificado</li>
-                    <li>✅ Escalabilidad mejorada</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection
-          id="conclusion"
-          title="7. CONCLUSIONES"
-          icon={Target}
-          gradient="from-emerald-600 to-emerald-800"
-          isExpanded={expandedSection === 'conclusion'}
-          onToggle={() => toggleSection('conclusion')}
-        >
-          <div className="space-y-8">
-            <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-10 rounded-2xl shadow-2xl text-white">
-              <h4 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                <Sparkles size={36} />
-                Conclusiones del Proyecto
-              </h4>
-              <p className="text-xl leading-relaxed">
-                XtremeGym representa una <strong>oportunidad excepcional</strong> en el mercado de soluciones digitales
-                para el sector fitness, combinando una propuesta de valor sólida, un modelo financiero
-                robusto y una ventana de oportunidad única en mercados desatendidos.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border-2 border-green-300 shadow-xl">
-                <h5 className="text-2xl font-bold text-green-900 mb-6 flex items-center gap-2">
-                  <span className="text-3xl">💪</span> Fortalezas Clave
-                </h5>
-                <ul className="space-y-4 text-gray-700">
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">📈</span>
-                    <div>
-                      <p className="font-bold">Modelo Financiero Excepcional</p>
-                      <p className="text-sm">Inversión $125, retorno $94k en 5 años, TIR 1,750%</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">🎯</span>
-                    <div>
-                      <p className="font-bold">Ventaja Competitiva</p>
-                      <p className="text-sm">Software a medida en nicho desatendido</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">🚀</span>
-                    <div>
-                      <p className="font-bold">Escalabilidad</p>
-                      <p className="text-sm">Costos marginales bajos, crecimiento rentable</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-300 shadow-xl">
-                <h5 className="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-2">
-                  <span className="text-3xl">🎯</span> Proyección
-                </h5>
-                <div className="space-y-4">
-                  <div className="bg-white p-4 rounded-xl shadow">
-                    <p className="font-bold text-blue-800">Fase 1 (Años 1-2)</p>
-                    <p className="text-sm text-gray-700">4-6 clientes • Validación</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-xl shadow">
-                    <p className="font-bold text-purple-800">Fase 2 (Años 3-4)</p>
-                    <p className="text-sm text-gray-700">11-15 clientes • Escalamiento</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-green-500 to-blue-500 p-4 rounded-xl shadow text-white">
-                    <p className="font-bold">Fase 3 (Año 5+)</p>
-                    <p className="text-sm">16+ clientes • Expansión regional</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-10 rounded-2xl shadow-2xl text-white">
-              <h5 className="text-3xl font-bold mb-6">⚡ Recomendación Final</h5>
-              <div className="space-y-4 text-lg">
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
-                  <span>El proyecto XtremeGym es <strong>ALTAMENTE VIABLE</strong> y presenta una de las mejores relaciones riesgo-retorno.</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
-                  <span>Inversión mínima ($125) vs. retorno potencial (~$94k) es <strong>excepcional</strong>.</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
-                  <span>La ventana de oportunidad es <strong>INMEDIATA</strong>: mercado listo, producto validado.</span>
-                </p>
-                
-                <div className="mt-6 p-6 bg-white bg-opacity-20 backdrop-blur-md rounded-xl border-2 border-white border-opacity-40">
-                  <p className="font-bold text-2xl mb-2">🚀 ACCIÓN RECOMENDADA</p>
-                  <p className="text-lg">
-                    Acelerar comercialización, objetivo 3 clientes nuevos en 6 meses, reinvertir 20-30% en marketing,
-                    preparar casos de éxito para escalar agresivamente.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 p-10 rounded-2xl text-white shadow-2xl">
-              <p className="text-4xl font-bold mb-4">🏆 El futuro es digital</p>
-              <p className="text-2xl font-light mb-6">XtremeGym está listo para liderarlo</p>
-              <div className="flex justify-center gap-4 flex-wrap">
-                <span className="px-6 py-3 bg-blue-500 rounded-full font-semibold">Innovación</span>
-                <span className="px-6 py-3 bg-green-500 rounded-full font-semibold">Rentabilidad</span>
-                <span className="px-6 py-3 bg-purple-500 rounded-full font-semibold">Escalabilidad</span>
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-slate-900 text-white py-8 mt-12">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-lg font-semibold mb-2">© 2024 XtremeGym</p>
-          <p className="text-sm text-gray-400">Trabajo Final de Modelo de Negocios y Finanzas</p>
-          <p className="text-xs text-gray-500 mt-2">Desarrollado por Estudiantes de Ingeniería en Sistemas</p>
         </div>
       </div>
     </div>
+  </section>
+);
+
+// Business Model
+const BusinessModel = () => (
+  <section className="py-20 bg-slate-900 text-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Modelo de Negocio</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+            SaaS Escalable con Ingresos Recurrentes
+          </h2>
+          <p className="text-slate-300 text-xl">
+            Economías de escala que maximizan el margen a medida que crece la base de clientes
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-2 border-blue-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+              <DollarSign className="w-8 h-8 text-green-400" />
+              Estructura de Ingresos
+            </h3>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
+                <div>
+                  <div className="font-semibold">Setup Inicial</div>
+                  <div className="text-sm text-slate-400">Implementación y configuración</div>
+                </div>
+                <div className="text-2xl font-bold text-green-400">$700</div>
+              </div>
+              
+              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
+                <div>
+                  <div className="font-semibold">Mantenimiento SaaS</div>
+                  <div className="text-sm text-slate-400">Recurrente mensual</div>
+                </div>
+                <div className="text-2xl font-bold text-blue-400">$45/mes</div>
+              </div>
+              
+              <div className="bg-slate-800 rounded-xl p-4 mt-4">
+                <div className="text-sm text-slate-400 mb-2">Ingreso anual por cliente (SaaS)</div>
+                <div className="text-3xl font-bold">$1,240 <span className="text-lg text-slate-400">USD</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-amber-600/20 to-orange-600/20 border-2 border-amber-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+              <BarChart3 className="w-8 h-8 text-amber-400" />
+              Estructura de Costos
+            </h3>
+            
+            <div className="space-y-6">
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-slate-300">Costos Fijos Anuales</span>
+                  <span className="font-bold">$1,300-2,000</span>
+                </div>
+                <div className="text-xs text-slate-400">Infraestructura compartida, soporte, herramientas</div>
+              </div>
+              
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-slate-300">Costo Variable/Cliente</span>
+                  <span className="font-bold text-green-400">$25-35</span>
+                </div>
+                <div className="text-xs text-slate-400">CPU, RAM, tráfico incremental (muy bajo)</div>
+              </div>
+              
+              <div className="bg-slate-800 rounded-xl p-4 mt-4">
+                <div className="text-sm text-slate-400 mb-2">Margen de Rentabilidad</div>
+                <div className="text-3xl font-bold text-green-400">~85%</div>
+                <div className="text-xs text-slate-400 mt-2">A partir del segundo año con 10+ clientes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-slate-950 border border-amber-500/30 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold mb-6 text-center">🚀 Por qué el modelo SaaS es superior</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-blue-400 mb-2">Economías de Escala</div>
+              <p className="text-slate-400 text-sm">Costos fijos se distribuyen entre todos los clientes</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-green-400 mb-2">Ingresos Recurrentes</div>
+              <p className="text-slate-400 text-sm">Flujo predecible que crece mes a mes</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">Alto LTV</div>
+              <p className="text-slate-400 text-sm">Clientes permanecen 3-5 años promedio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// KPIs & Metrics
+const KPIs = () => (
+  <section className="py-20 bg-slate-950 text-white">
+    <div className="container mx-auto px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Métricas Clave</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+            KPIs que Importan
+          </h2>
+        </div>
+        
+        <div className="grid md:grid-cols-4 gap-6 mb-12">
+          <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6 text-center">
+            <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+            <div className="text-3xl font-bold mb-2">4-8</div>
+            <div className="text-slate-400 text-sm">Clientes/mes (conservador)</div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30 rounded-xl p-6 text-center">
+            <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
+            <div className="text-3xl font-bold mb-2">15-25</div>
+            <div className="text-slate-400 text-sm">Clientes/mes (optimizado)</div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6 text-center">
+            <DollarSign className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+            <div className="text-3xl font-bold mb-2">$1,240</div>
+            <div className="text-slate-400 text-sm">Ingreso anual/cliente</div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-amber-600/20 to-amber-800/20 border border-amber-500/30 rounded-xl p-6 text-center">
+            <Users className="w-12 h-12 text-amber-400 mx-auto mb-4" />
+            <div className="text-3xl font-bold mb-2">85%</div>
+            <div className="text-slate-400 text-sm">Margen de rentabilidad</div>
+          </div>
+        </div>
+        
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold mb-6">Estrategia de Adquisición Multi-Canal</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-bold text-lg mb-4 text-blue-400">Canales de Marketing</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold">Marketing Digital:</span>
+                    <span className="text-slate-400 text-sm ml-2">Meta Ads + Google Ads ($150-300/mes)</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold">Appointment Setting:</span>
+                    <span className="text-slate-400 text-sm ml-2">15% comisión sobre ventas</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold">Demos Consultivas:</span>
+                    <span className="text-slate-400 text-sm ml-2">15-25% tasa de conversión</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold">Outbound Manual:</span>
+                    <span className="text-slate-400 text-sm ml-2">LinkedIn + Email directo</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4 text-green-400">Conversión Esperada</h4>
+              <div className="space-y-4">
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-slate-300">Lead → Demo</span>
+                    <span className="font-bold text-blue-400">20-35%</span>
+                  </div>
+                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-400 w-[30%]"></div>
+                  </div>
+                </div>
+                
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-slate-300">Demo → Cliente</span>
+                    <span className="font-bold text-green-400">15-25%</span>
+                  </div>
+                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-full bg-green-400 w-[20%]"></div>
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-lg p-4 mt-4">
+                  <div className="text-sm text-slate-400 mb-1">Pipeline Mensual Proyectado</div>
+                  <div className="text-2xl font-bold">8-15 clientes nuevos</div>
+                  <div className="text-xs text-slate-400 mt-1">Escenario realista 3-6 meses</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// Financial Projections
+const FinancialProjections = () => {
+  const data = [
+    { year: 'Año 1', clients: 3, revenue: 3600, expenses: 535, cashflow: 2912 },
+    { year: 'Año 2', clients: 10, revenue: 10400, expenses: 1100, cashflow: 8835 },
+    { year: 'Año 3', clients: 25, revenue: 24000, expenses: 2350, cashflow: 20568 },
+    { year: 'Año 4', clients: 40, revenue: 32100, expenses: 3500, cashflow: 27170 },
+    { year: 'Año 5', clients: 50, revenue: 34000, expenses: 4200, cashflow: 28310 }
+  ];
+  
+  return (
+    <section className="py-20 bg-slate-900 text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Proyección Financiera</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              Cash Flow Positivo desde el Año 1
+            </h2>
+            <p className="text-slate-300 text-xl">
+              Proyección a 5 años con crecimiento conservador y margen superior al 85%
+            </p>
+          </div>
+          
+          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-8 mb-8">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-800">
+                    <th className="text-left py-4 px-4 font-bold">Año</th>
+                    <th className="text-right py-4 px-4 font-bold">Clientes</th>
+                    <th className="text-right py-4 px-4 font-bold">Ingresos</th>
+                    <th className="text-right py-4 px-4 font-bold">Egresos</th>
+                    <th className="text-right py-4 px-4 font-bold text-green-400">Cash Flow</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((row, idx) => (
+                    <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/30">
+                      <td className="py-4 px-4 font-semibold">{row.year}</td>
+                      <td className="text-right py-4 px-4">{row.clients}</td>
+                      <td className="text-right py-4 px-4 text-blue-400">${row.revenue.toLocaleString()}</td>
+                      <td className="text-right py-4 px-4 text-red-400">${row.expenses.toLocaleString()}</td>
+                      <td className="text-right py-4 px-4 font-bold text-green-400">${row.cashflow.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gradient-to-br from-green-600/20 to-emerald-600/20 border border-green-500/30 rounded-xl p-6">
+              <LineChart className="w-10 h-10 text-green-400 mb-4" />
+              <div className="text-3xl font-bold mb-2">$88,795</div>
+              <div className="text-slate-400 text-sm">Flujo acumulado 5 años</div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6">
+              <TrendingUp className="w-10 h-10 text-blue-400 mb-4" />
+              <div className="text-3xl font-bold mb-2">845%</div>
+              <div className="text-slate-400 text-sm">Crecimiento ingresos (Año 1 vs Año 5)</div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6">
+              <BarChart3 className="w-10 h-10 text-purple-400 mb-4" />
+              <div className="text-3xl font-bold mb-2">$28,310</div>
+              <div className="text-slate-400 text-sm">Cash Flow Año 5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
+
+// Roadmap
+const Roadmap = () => {
+  const phases = [
+    {
+      quarter: "Q1 2026",
+      title: "Consolidación",
+      goals: ["Alcanzar 15 clientes activos", "Refinar procesos de onboarding", "Implementar feedback inicial"],
+      status: "En progreso"
+    },
+    {
+      quarter: "Q2-Q3 2026",
+      title: "Escalamiento",
+      goals: ["Automatizar marketing digital", "Contratar appointment setter", "Expandir a 25-30 clientes"],
+      status: "Planificado"
+    },
+    {
+      quarter: "Q4 2026",
+      title: "Optimización",
+      goals: ["Optimizar infraestructura cloud", "Lanzar programa de referidos", "Superar 40 clientes"],
+      status: "Planificado"
+    },
+    {
+      quarter: "2027",
+      title: "Expansión Regional",
+      goals: ["Abrir mercado LATAM", "Partnerships estratégicos", "Alcanzar 100+ clientes"],
+      status: "Visión"
+    }
+  ];
+  
+  return (
+    <section className="py-20 bg-slate-950 text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Hoja de Ruta</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              Plan de Crecimiento 2026-2027
+            </h2>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-amber-500"></div>
+            
+            <div className="space-y-12">
+              {phases.map((phase, idx) => (
+                <div key={idx} className={`flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                  <div className={`w-5/12 ${idx % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500/50 transition-all">
+                      <div className="text-sm text-amber-400 font-semibold mb-2">{phase.quarter}</div>
+                      <h3 className="text-2xl font-bold mb-4">{phase.title}</h3>
+                      <div className="text-xs text-slate-400 mb-4">{phase.status}</div>
+                      <ul className="space-y-2">
+                        {phase.goals.map((goal, goalIdx) => (
+                          <li key={goalIdx} className="flex items-start gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-400 shrink-0 mt-1" />
+                            <span className="text-slate-300 text-sm">{goal}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="w-2/12 flex justify-center">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-950"></div>
+                  </div>
+                  <div className="w-5/12"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Main App Component
+function App() {
+  return (
+    <div className="min-h-screen">
+      <Hero />
+      <Problem />
+      <ValueProposition />
+      <Features />
+      <Comparison />
+      <Testimonials />
+      <Pricing />
+      <DemoCTA />
+      <InvestorDivider />
+      <MarketOpportunity />
+      <BusinessModel />
+      <KPIs />
+      <FinancialProjections />
+      <Roadmap />
+    </div>
+  );
+}
 
 export default App;
