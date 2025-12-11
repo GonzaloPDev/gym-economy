@@ -1314,13 +1314,13 @@ const Roadmap = () => {
 // Gallery Carousel Section
 const GalleryCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const base = import.meta.env.BASE_URL;
   const screenshots = [
-    { src: '/assets/usuarios.png', title: 'Usuarios', description: 'Lista de usuarios' },
-    { src: '/assets/planes.png', title: 'Planes', description: 'Vista de planes de suscripcion y extras' },
-    { src: '/assets/crearPost.png', title: 'Crear post', description: 'Crear post con imagenes' },
-    { src: '/assets/posts.png', title: 'Comunidad', description: 'Sección de comunidad y comentarios' },
-    { src: '/assets/certificado.png', title: 'Certificado médico', description: 'Se puede aprobar o rechazar el certificado medico en pdf o imagen' },
+    { src: `${base}assets/usuarios.png`, title: 'Usuarios', description: 'Lista de usuarios' },
+    { src: `${base}assets/planes.png`, title: 'Planes', description: 'Vista de planes de suscripcion y extras' },
+    { src: `${base}assets/crearPost.png`, title: 'Crear post', description: 'Crear post con imagenes' },
+    { src: `${base}assets/posts.png`, title: 'Comunidad', description: 'Sección de comunidad y comentarios' },
+    { src: `${base}assets/certificado.png`, title: 'Certificado médico', description: 'Se puede aprobar o rechazar el certificado medico en pdf o imagen' },
   ];
 
   const nextSlide = () => {
