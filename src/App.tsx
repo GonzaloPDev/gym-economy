@@ -150,6 +150,12 @@ const Hero = ({ openModal }) => (
 
     <div className="container mx-auto px-6 relative z-10">
       <div className="max-w-4xl">
+
+        {/* Nombre del producto en grande */}
+        <h1 className="text-6xl md:text-8xl font-extrabold mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent tracking-tight drop-shadow-lg">
+          SIG-FIT
+        </h1>
+
         <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
           <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
         </div>
@@ -197,10 +203,12 @@ const Hero = ({ openModal }) => (
             <span>Implementación en 48hs</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 );
+
 
 // Problem Section
 const Problem = () => (
@@ -737,6 +745,27 @@ const DemoCTA = ({ openModal }) => (
     </div>
   </section>
 );
+// Investment Opportunity - DARK PREMIUM
+const InvestmentOpportunity = () => (
+  <section className="min-h-screen relative flex items-center justify-center bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden">
+
+    {/* Capa oscura sutil */}
+    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+    {/* Textura de ruido */}
+    <div className="absolute inset-0 opacity-25 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+
+    <div className="relative z-10 text-center px-6">
+      <h1 className="text-6xl md:text-9xl font-black leading-tight drop-shadow-2xl">
+        Oportunidad de
+        <span className="block bg-gradient-to-r from-cyan-300 to-blue-200 bg-clip-text text-transparent drop-shadow-xl">
+          Inversión
+        </span>
+      </h1>
+    </div>
+  </section>
+);
+
 
 // Investor Section Divider - DARK PREMIUM
 const InvestorDivider = ({ openModal }) => (
@@ -1577,6 +1606,7 @@ function App() {
       <Testimonials />
       <Pricing openModal={openModal} />
       <DemoCTA openModal={openModal} />
+      <InvestmentOpportunity />
       <MarketOpportunity />
       <InvestorDivider openModal={openModal} />
       <InvestmentNeeded />
