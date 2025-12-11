@@ -142,7 +142,6 @@ const ContactModal = ({ isOpen, onClose, type }) => {
     </div>
   );
 };
-
 // Hero Section
 const Hero = ({ openModal }) => (
   <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
@@ -173,6 +172,15 @@ const Hero = ({ openModal }) => (
             Solicitar Demo Gratis
             <ArrowRight className="w-5 h-5" />
           </button>
+
+          {/* 🔽 Nuevo botón: Descargar Informe */}
+          <a
+            href="/assets/Modelo-negocio-SIG-FIT.pdf"
+            download
+            className="px-8 py-4 rounded-lg font-semibold text-lg border border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+          >
+            Descargar Informe Modelo de Negocio
+          </a>
         </div>
 
         <div className="flex flex-wrap gap-8 text-sm">
