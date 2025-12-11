@@ -1,8 +1,149 @@
 import { useState } from 'react';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, Zap, DollarSign, BarChart3, Target, Calendar, Smartphone, Globe, Heart, QrCode, CreditCard, LineChart } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, Zap, DollarSign, BarChart3, Target, Calendar, Smartphone, Globe, Heart, QrCode, CreditCard, LineChart, X } from 'lucide-react';
 
+// Contact Modal Component
+const ContactModal = ({ isOpen, onClose, type }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    gymName: '',
+    message: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      onClose();
+      setFormData({ name: '', email: '', phone: '', gymName: '', message: '' });
+    }, 2000);
+  };
+
+  const titles = {
+    demo: 'Solicitar Demo Gratuita',
+    saas: 'Comenzar con SIG-FIT',
+    license: 'Consultar Licencia',
+    investor: 'Agendar Llamada de Inversión',
+    support: 'Hablar con el Equipo'
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-slate-900 border-b border-slate-700 p-6 flex justify-between items-center">
+          <h3 className="text-2xl font-bold text-white">{titles[type]}</h3>
+          <button
+            onClick={onClose}
+            className="text-slate-400 hover:text-white transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          {submitted ? (
+            <div className="text-center py-12">
+              <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-12 h-12 text-green-400" />
+              </div>
+              <h4 className="text-2xl font-bold text-white mb-2">¡Mensaje Enviado!</h4>
+              <p className="text-slate-400">Nos pondremos en contacto contigo pronto.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Nombre completo *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="Juan Pérez"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="juan@gimnasio.com"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Teléfono *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="+54 11 1234-5678"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Nombre del gimnasio
+                </label>
+                <input
+                  type="text"
+                  value={formData.gymName}
+                  onChange={(e) => setFormData({ ...formData, gymName: e.target.value })}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder="Mi Gimnasio"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Mensaje
+                </label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={4}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                  placeholder="Cuéntanos sobre tu gimnasio y qué necesitas..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all flex items-center justify-center gap-2"
+              >
+                Enviar Solicitud
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <p className="text-xs text-slate-400 text-center">
+                Al enviar este formulario, aceptas que nos pongamos en contacto contigo.
+              </p>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 // Hero Section
-const Hero = () => (
+const Hero = ({ openModal }) => (
   <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
     <div className="absolute inset-0 bg-black opacity-30"></div>
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
@@ -30,13 +171,22 @@ const Hero = () => (
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
-          <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
+          <button
+            onClick={() => openModal('demo')}
+            className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+          >
             Solicitar Demo Gratis
             <ArrowRight className="w-5 h-5" />
           </button>
-          <button className="border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all">
-            Ver Presentación
-          </button>
+
+          {/* 🔽 Nuevo botón: Descargar Informe */}
+          <a
+            href="/assets/Modelo-negocio-SIG-FIT.pdf"
+            download
+            className="px-8 py-4 rounded-lg font-semibold text-lg border border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+          >
+            Descargar Informe Modelo de Negocio
+          </a>
         </div>
 
         <div className="flex flex-wrap gap-8 text-sm">
@@ -406,19 +556,13 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="inline-block bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
-            <div className="text-slate-600">Margen de rentabilidad promedio de nuestros clientes</div>
-          </div>
-        </div>
       </div>
     </section>
   );
 };
 
 // Pricing
-const Pricing = () => {
+const Pricing = ({ openModal }) => {
   const [annual, setAnnual] = useState(false);
 
   return (
@@ -486,7 +630,10 @@ const Pricing = () => {
                 </li>
               </ul>
 
-              <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all">
+              <button
+                onClick={() => openModal('saas')}
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all"
+              >
                 Empezar Ahora
               </button>
             </div>
@@ -527,7 +674,10 @@ const Pricing = () => {
               </li>
             </ul>
 
-            <button className="w-full border-2 border-slate-600 py-4 rounded-lg font-semibold hover:bg-slate-700 transition-all">
+            <button
+              onClick={() => openModal('license')}
+              className="w-full border-2 border-slate-600 py-4 rounded-lg font-semibold hover:bg-slate-700 transition-all"
+            >
               Consultar Licencia
             </button>
           </div>
@@ -535,7 +685,10 @@ const Pricing = () => {
 
         <div className="mt-12 text-center">
           <p className="text-slate-400 mb-4">¿No estás seguro cuál elegir?</p>
-          <button className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 mx-auto">
+          <button
+            onClick={() => openModal('support')}
+            className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 mx-auto"
+          >
             Habla con nuestro equipo
             <ArrowRight className="w-5 h-5" />
           </button>
@@ -546,7 +699,7 @@ const Pricing = () => {
 };
 
 // Demo CTA
-const DemoCTA = () => (
+const DemoCTA = ({ openModal }) => (
   <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
     <div className="container mx-auto px-6">
       <div className="max-w-4xl mx-auto text-center">
@@ -572,12 +725,15 @@ const DemoCTA = () => (
             <div>
               <div className="text-4xl mb-3">📊</div>
               <h3 className="font-bold mb-2">Plan de Acción</h3>
-              <p className="text-blue-100 text-sm">Proyectamos ROI y plan de implementación</p>
+              <p className="text-blue-100 text-sm">Presentamos plan de implementación</p>
             </div>
           </div>
         </div>
 
-        <button className="bg-white text-blue-900 px-12 py-5 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-2xl hover:shadow-3xl inline-flex items-center gap-3">
+        <button
+          onClick={() => openModal('demo')}
+          className="bg-white text-blue-900 px-12 py-5 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-2xl hover:shadow-3xl inline-flex items-center gap-3"
+        >
           Solicitar Demo Gratuita
           <ArrowRight className="w-6 h-6" />
         </button>
@@ -591,7 +747,7 @@ const DemoCTA = () => (
 );
 
 // Investor Section Divider - DARK PREMIUM
-const InvestorDivider = () => (
+const InvestorDivider = ({ openModal }) => (
   <section className="min-h-screen relative flex items-center bg-gradient-to-b from-black via-slate-900 to-black text-white overflow-hidden">
 
     {/* Capa oscura sutil */}
@@ -620,9 +776,9 @@ const InvestorDivider = () => (
         {/* Stats */}
         <div className="grid md:grid-cols-4 gap-8 mb-14">
           {[
-            { value: "85%", label: "Margen de Rentabilidad" },
-            { value: "$88K", label: "Flujo a 5 años" },
-            { value: "50+", label: "Clientes Año 5" },
+            { value: "131%", label: "TIR (Tasa Interna de Retorno)" },
+            { value: "$89K", label: "Flujo a 5 años" },
+            { value: "100+", label: "Clientes Año 5" },
             { value: "Año 1", label: "Cash Flow +" },
           ].map((item, index) => (
             <div
@@ -638,8 +794,11 @@ const InvestorDivider = () => (
         </div>
 
         {/* Botones */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <button className="border border-cyan-300/40 bg-white/5 backdrop-blur-md px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 hover:scale-[1.02] transition-all">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
+          <button
+            onClick={() => openModal('investor')}
+            className="border border-cyan-300/40 bg-white/5 backdrop-blur-md px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 hover:scale-[1.02] transition-all"
+          >
             Agendar Llamada
           </button>
         </div>
@@ -650,8 +809,8 @@ const InvestorDivider = () => (
 
 // Investment Needed - DARK PREMIUM
 const InvestmentNeeded = () => {
-  const raised = 12000;
-  const goal = 50000;
+  const raised = 586;
+  const goal = 4566;
   const percentage = (raised / goal) * 100;
 
   return (
@@ -718,25 +877,25 @@ const InvestmentNeeded = () => {
           <div className="grid md:grid-cols-3 gap-6 mt-10">
             {[
               {
+                icon: "⚙️",
+                pct: "32%",
+                label: "Infraestructura",
+                desc: "Servidores, cluster, almacenamiento y mantenimiento.",
+                color: "blue",
+              },
+              {
                 icon: "📢",
-                pct: "40%",
+                pct: "52%",
                 label: "Marketing Digital",
-                desc: "Ads, SEO y contenido",
+                desc: "Ads, SEO y contenido para adquisición.",
                 color: "cyan",
               },
               {
                 icon: "👥",
-                pct: "35%",
+                pct: "15%",
                 label: "Equipo Comercial",
-                desc: "Sales reps y prospecting",
+                desc: "Sales reps, prospecting y appointment setting.",
                 color: "emerald",
-              },
-              {
-                icon: "⚙️",
-                pct: "25%",
-                label: "Infraestructura",
-                desc: "Servidores y desarrollo",
-                color: "blue",
               },
             ].map((item, index) => (
               <div
@@ -757,6 +916,7 @@ const InvestmentNeeded = () => {
     </section>
   );
 };
+
 
 
 
@@ -824,105 +984,6 @@ const MarketOpportunity = () => (
   </section>
 );
 
-// Business Model
-const BusinessModel = () => (
-  <section className="py-20 bg-slate-900 text-white">
-    <div className="container mx-auto px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Modelo de Negocio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-            SaaS Escalable con Ingresos Recurrentes
-          </h2>
-          <p className="text-slate-300 text-xl">
-            Economías de escala que maximizan el margen a medida que crece la base de clientes
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-2 border-blue-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <DollarSign className="w-8 h-8 text-green-400" />
-              Estructura de Ingresos
-            </h3>
-
-            <div className="space-y-4">
-              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
-                <div>
-                  <div className="font-semibold">Setup Inicial</div>
-                  <div className="text-sm text-slate-400">Implementación y configuración</div>
-                </div>
-                <div className="text-2xl font-bold text-green-400">$700</div>
-              </div>
-
-              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
-                <div>
-                  <div className="font-semibold">Mantenimiento SaaS</div>
-                  <div className="text-sm text-slate-400">Recurrente mensual</div>
-                </div>
-                <div className="text-2xl font-bold text-blue-400">$45/mes</div>
-              </div>
-
-              <div className="bg-slate-800 rounded-xl p-4 mt-4">
-                <div className="text-sm text-slate-400 mb-2">Ingreso anual por cliente (SaaS)</div>
-                <div className="text-3xl font-bold">$1,240 <span className="text-lg text-slate-400">USD</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-amber-600/20 to-orange-600/20 border-2 border-amber-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <BarChart3 className="w-8 h-8 text-amber-400" />
-              Estructura de Costos
-            </h3>
-
-            <div className="space-y-6">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-300">Costos Fijos Anuales</span>
-                  <span className="font-bold">$1,300-2,000</span>
-                </div>
-                <div className="text-xs text-slate-400">Infraestructura compartida, soporte, herramientas</div>
-              </div>
-
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-300">Costo Variable/Cliente</span>
-                  <span className="font-bold text-green-400">$25-35</span>
-                </div>
-                <div className="text-xs text-slate-400">CPU, RAM, tráfico incremental (muy bajo)</div>
-              </div>
-
-              <div className="bg-slate-800 rounded-xl p-4 mt-4">
-                <div className="text-sm text-slate-400 mb-2">TIR (Tasa Interna de Retorno)</div>
-                <div className="text-3xl font-bold text-green-400">~115%</div>
-                <div className="text-xs text-slate-400 mt-2">A partir del segundo año con 10+ clientes</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-slate-950 border border-amber-500/30 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-6 text-center">🚀 Por qué el modelo SaaS es superior</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400 mb-2">Economías de Escala</div>
-              <p className="text-slate-400 text-sm">Costos fijos se distribuyen entre todos los clientes</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-green-400 mb-2">Ingresos Recurrentes</div>
-              <p className="text-slate-400 text-sm">Flujo predecible que crece mes a mes</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">Alto LTV</div>
-              <p className="text-slate-400 text-sm">Clientes permanecen 3-5 años promedio</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
 // KPIs & Metrics
 const KPIs = () => (
@@ -937,16 +998,17 @@ const KPIs = () => (
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-12">
+
+          <div className="bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30 rounded-xl p-6 text-center">
+            <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
+            <div className="text-3xl font-bold mb-2">10%</div>
+            <div className="text-slate-400 text-sm">MRR Growth</div>
+          </div>
+
           <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6 text-center">
             <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <div className="text-3xl font-bold mb-2">4-8</div>
             <div className="text-slate-400 text-sm">Clientes/mes (conservador)</div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30 rounded-xl p-6 text-center">
-            <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold mb-2">15-25</div>
-            <div className="text-slate-400 text-sm">Clientes/mes (optimizado)</div>
           </div>
 
           <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6 text-center">
@@ -957,8 +1019,8 @@ const KPIs = () => (
 
           <div className="bg-gradient-to-br from-amber-600/20 to-amber-800/20 border border-amber-500/30 rounded-xl p-6 text-center">
             <Users className="w-12 h-12 text-amber-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold mb-2">85%</div>
-            <div className="text-slate-400 text-sm">Margen de rentabilidad</div>
+            <div className="text-3xl font-bold mb-2">5%</div>
+            <div className="text-slate-400 text-sm">Tasa de Churn</div>
           </div>
         </div>
 
@@ -1110,6 +1172,12 @@ const FinancialProjections = () => {
               <div className="text-slate-400 text-sm">TIR (Tasa Interna de Retorno)</div>
             </div>
 
+            <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-xl p-6">
+              <BarChart3 className="w-10 h-10 text-amber-400 mb-4" />
+              <div className="text-3xl font-bold mb-2">5 clientes</div>
+              <div className="text-slate-400 text-sm">Punto de equilibrio / año</div>
+            </div>
+
           </div>
 
         </div>
@@ -1123,28 +1191,45 @@ const Roadmap = () => {
   const phases = [
     {
       quarter: "Q1 2026",
-      title: "Consolidación",
-      goals: ["Alcanzar 15 clientes activos", "Refinar procesos de onboarding", "Implementar feedback inicial"],
-      status: "En progreso"
+      title: "Lanzamiento & Validación",
+      goals: [
+        "Alcanzar 8 clientes activos (base actual proyectada)",
+        "Implementar onboarding automatizado",
+        "Liberar módulo estable de rutinas, pagos y asistencia",
+      ],
+      status: "En progreso",
     },
     {
-      quarter: "Q2-Q3 2026",
-      title: "Escalamiento",
-      goals: ["Automatizar marketing digital", "Contratar appointment setter", "Expandir a 25-30 clientes"],
-      status: "Planificado"
+      quarter: "Q2 2026",
+      title: "Optimización del Producto",
+      goals: [
+        "Refinar UX con feedback real de gimnasios",
+        "Mejorar desempeño de infraestructura (Cloudflare + DB tuning)",
+        "Aumentar a 12–15 clientes activos",
+      ],
+      status: "Planificado",
     },
     {
-      quarter: "Q4 2026",
-      title: "Optimización",
-      goals: ["Optimizar infraestructura cloud", "Lanzar programa de referidos", "Superar 40 clientes"],
-      status: "Planificado"
+      quarter: "Q3–Q4 2026",
+      title: "Crecimiento Sostenido",
+      goals: [
+        "Implementar automatizaciones de marketing y remarketing",
+        "Contratar appointment setter para prospección outbound",
+        "Escalar a 18–22 clientes activos",
+      ],
+      status: "Planificado",
     },
     {
       quarter: "2027",
-      title: "Expansión Regional",
-      goals: ["Abrir mercado LATAM", "Partnerships estratégicos", "Alcanzar 100+ clientes"],
-      status: "Visión"
-    }
+      title: "Consolidación & Expansión",
+      goals: [
+        "Optimizar costos de infraestructura y soporte",
+        "Abrir mercado en LATAM",
+        "Partnerships estratégicos",
+        "Alcanzar +50 clientes activos",
+      ],
+      status: "Visión",
+    },
   ];
 
   return (
@@ -1152,7 +1237,9 @@ const Roadmap = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Hoja de Ruta</span>
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">
+              Hoja de Ruta
+            </span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
               Plan de Crecimiento 2026-2027
             </h2>
@@ -1163,10 +1250,19 @@ const Roadmap = () => {
 
             <div className="space-y-12">
               {phases.map((phase, idx) => (
-                <div key={idx} className={`flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-5/12 ${idx % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div
+                  key={idx}
+                  className={`flex items-center ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
+                >
+                  <div
+                    className={`w-5/12 ${idx % 2 === 0 ? "text-right pr-8" : "text-left pl-8"
+                      }`}
+                  >
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500/50 transition-all">
-                      <div className="text-sm text-amber-400 font-semibold mb-2">{phase.quarter}</div>
+                      <div className="text-sm text-amber-400 font-semibold mb-2">
+                        {phase.quarter}
+                      </div>
                       <h3 className="text-2xl font-bold mb-4">{phase.title}</h3>
                       <div className="text-xs text-slate-400 mb-4">{phase.status}</div>
                       <ul className="space-y-2">
@@ -1193,24 +1289,310 @@ const Roadmap = () => {
   );
 };
 
+
+// Gallery Carousel Section
+const GalleryCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const screenshots = [
+    { src: '/assets/usuarios.png', title: 'Usuarios', description: 'Lista de usuarios' },
+    { src: '/assets/planes.png', title: 'Planes', description: 'Vista de planes de suscripcion y extras' },
+    { src: '/assets/crearPost.png', title: 'Crear post', description: 'Crear post con imagenes' },
+    { src: '/assets/posts.png', title: 'Comunidad', description: 'Sección de comunidad y comentarios' },
+    { src: '/assets/certificado.png', title: 'Certificado médico', description: 'Se puede aprobar o rechazar el certificado medico en pdf o imagen' },
+  ];
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <span className="text-blue-400 font-semibold text-sm uppercase tracking-wide">
+              Galería
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              Experiencia Mobile Premium
+            </h2>
+            <p className="text-xl text-slate-300">
+              Diseñada con React Native + Expo para iOS y Android
+            </p>
+          </div>
+
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Main Image Display */}
+            <div className="relative bg-slate-950 rounded-3xl p-8 shadow-2xl overflow-hidden">
+              {/* Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 blur-3xl"></div>
+
+              {/* Phone Mockup */}
+              <div className="relative mx-auto max-w-sm">
+                {/* Phone Frame */}
+                <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-700">
+                  {/* Notch */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
+
+                  {/* Screen - aspect ratio 375:693 */}
+                  <div className="relative bg-white rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '375/693' }}>
+                    <img
+                      src={screenshots[currentIndex].src}
+                      alt={screenshots[currentIndex].title}
+                      className="w-full h-full object-contain bg-slate-100 transition-opacity duration-500"
+                      onError={(e) => {
+                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="375" height="693"%3E%3Crect fill="%23334155" width="375" height="693"/%3E%3Ctext x="50%25" y="50%25" font-size="24" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EScreenshot%3C/text%3E%3C/svg%3E';
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Info Overlay */}
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-slate-800/90 backdrop-blur-lg border border-slate-700 rounded-2xl p-4 shadow-xl">
+                  <h3 className="font-bold text-lg mb-1">{screenshots[currentIndex].title}</h3>
+                  <p className="text-sm text-slate-400">{screenshots[currentIndex].description}</p>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-slate-700 border border-slate-600 rounded-full flex items-center justify-center transition-all hover:scale-110 z-20"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-slate-700 border border-slate-600 rounded-full flex items-center justify-center transition-all hover:scale-110 z-20"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Dots Navigation */}
+            <div className="flex justify-center gap-3 mt-12">
+              {screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all ${index === currentIndex
+                    ? 'w-12 h-3 bg-blue-500'
+                    : 'w-3 h-3 bg-slate-600 hover:bg-slate-500'
+                    } rounded-full`}
+                />
+              ))}
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="mt-8 flex gap-4 justify-center overflow-x-auto pb-4">
+              <div className="flex gap-4">
+                {screenshots.map((screenshot, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all ${index === currentIndex
+                      ? 'ring-4 ring-blue-500 scale-105'
+                      : 'ring-2 ring-slate-700 opacity-60 hover:opacity-100'
+                      }`}
+                  >
+                    <div className="w-20 bg-slate-800" style={{ aspectRatio: '375/693' }}>
+                      <img
+                        src={screenshot.src}
+                        alt={screenshot.title}
+                        className="w-full h-full object-contain bg-slate-900"
+                        onError={(e) => {
+                          e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="375" height="693"%3E%3Crect fill="%23334155" width="375" height="693"/%3E%3C/svg%3E';
+                        }}
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Features Grid Below Carousel */}
+          <div className="grid md:grid-cols-3 gap-6 mt-16">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <Smartphone className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+              <h3 className="font-bold text-lg mb-2">React Native</h3>
+              <p className="text-slate-400 text-sm">Rendimiento nativo en iOS y Android</p>
+            </div>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+              <h3 className="font-bold text-lg mb-2">Expo SDK</h3>
+              <p className="text-slate-400 text-sm">Desarrollo rápido y actualizaciones</p>
+            </div>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <svg className="w-12 h-12 text-orange-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              <h3 className="font-bold text-lg mb-2">Firebase Cloud Messaging</h3>
+              <p className="text-slate-400 text-sm">Notificaciones push en tiempo real</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+// Footer Component
+const Footer = () => (
+  <footer className="bg-slate-950 text-white border-t border-slate-800">
+    <div className="container mx-auto px-6 py-12">
+      <div className="grid md:grid-cols-4 gap-8 mb-8">
+        {/* Company Info */}
+        <div>
+          <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            SIG-FIT
+          </h3>
+          <p className="text-slate-400 text-sm mb-4">
+            Transformando gimnasios tradicionales en plataformas digitales escalables.
+          </p>
+          <div className="flex gap-4">
+            <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+            <a href="https://github.com/GonzaloPDev/gym-economy" target='_blank' className="text-slate-400 hover:text-blue-400 transition-colors">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Product */}
+        <div>
+          <h4 className="font-bold text-lg mb-4">Producto</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Características</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Precios</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Casos de Éxito</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Demo</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Documentación</a></li>
+          </ul>
+        </div>
+
+        {/* Company */}
+        <div>
+          <h4 className="font-bold text-lg mb-4">Empresa</h4>
+          <ul className="space-y-2">
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Sobre Nosotros</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Inversores</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Carreras</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Blog</a></li>
+            <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">Prensa</a></li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="font-bold text-lg mb-4">Contacto</h4>
+          <ul className="space-y-2">
+            <li className="text-slate-400 text-sm flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              contacto@sigfit.com
+            </li>
+            <li className="text-slate-400 text-sm flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              +54 11 1234-5678
+            </li>
+            <li className="text-slate-400 text-sm flex items-start gap-2">
+              <svg className="w-4 h-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              La Plata, Buenos Aires<br />Argentina
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-slate-400 text-sm mb-4 md:mb-0">
+          © 2025 SIG-FIT. Todos los derechos reservados.
+        </p>
+        <div className="flex gap-6">
+          <a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">
+            Términos y Condiciones
+          </a>
+          <a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">
+            Política de Privacidad
+          </a>
+          <a href="#" className="text-slate-400 hover:text-white transition-colors text-sm">
+            Cookies
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+);
+
 // Main App Component
 function App() {
+  const [modalState, setModalState] = useState({ isOpen: false, type: 'demo' });
+
+  const openModal = (type) => {
+    setModalState({ isOpen: true, type });
+  };
+
+  const closeModal = () => {
+    setModalState({ isOpen: false, type: 'demo' });
+  };
+
   return (
     <div className="min-h-screen">
-      <Hero />
+      <ContactModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        type={modalState.type}
+      />
+      <Hero openModal={openModal} />
       <Problem />
       <ValueProposition />
       <Features />
       <Comparison />
       <Testimonials />
-      <Pricing />
-      <DemoCTA />
-      <InvestorDivider />
+      <Pricing openModal={openModal} />
+      <DemoCTA openModal={openModal} />
       <MarketOpportunity />
-      <BusinessModel />
+      <InvestorDivider openModal={openModal} />
+      <InvestmentNeeded />
       <KPIs />
       <FinancialProjections />
+      <GalleryCarousel />
       <Roadmap />
+      <Footer />
     </div>
   );
 }
