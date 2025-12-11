@@ -9,6 +9,12 @@ const Hero = () => (
 
     <div className="container mx-auto px-6 relative z-10">
       <div className="max-w-4xl">
+
+        {/* Nombre del producto en grande */}
+        <h1 className="text-6xl md:text-8xl font-extrabold mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent tracking-tight drop-shadow-lg">
+          SIG-FIT
+        </h1>
+
         <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
           <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
         </div>
@@ -47,10 +53,12 @@ const Hero = () => (
             <span>Implementación en 48hs</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 );
+
 
 // Problem Section
 const Problem = () => (
