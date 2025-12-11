@@ -143,71 +143,77 @@ const ContactModal = ({ isOpen, onClose, type }) => {
   );
 };
 // Hero Section
-const Hero = ({ openModal }) => (
-  <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
-    <div className="absolute inset-0 bg-black opacity-30"></div>
-    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+const Hero = ({ openModal }) => {
+  const base = import.meta.env.BASE_URL;
+  return (
+    <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white flex items-center relative overflow-hidden">
+      <div className="absolute inset-0 bg-black opacity-30"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
 
-    <div className="container mx-auto px-6 relative z-10">
-      <div className="max-w-4xl">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl">
 
-        {/* Nombre del producto en grande */}
-        <h1 className="text-6xl md:text-8xl font-extrabold mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent tracking-tight drop-shadow-lg">
-          SIG-FIT
-        </h1>
+          {/* Nombre del producto en grande */}
+          <h1 className="text-6xl md:text-8xl font-extrabold mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent tracking-tight drop-shadow-lg">
+            SIG-FIT
+          </h1>
 
-        <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
-          <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
-        </div>
-
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Transforma tu gimnasio en una
-          <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> máquina digital</span>
-        </h1>
-
-        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl">
-          SIG-FIT automatiza pagos, gestiona accesos, personaliza rutinas y crea comunidad.
-          Todo en una plataforma escalable para gimnasios que quieren crecer.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 mb-12">
-          <button
-            onClick={() => openModal('demo')}
-            className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
-          >
-            Solicitar Demo Gratis
-            <ArrowRight className="w-5 h-5" />
-          </button>
-
-          {/* 🔽 Nuevo botón: Descargar Informe */}
-          <a
-            href="/assets/Modelo-negocio-SIG-FIT.pdf"
-            download
-            className="px-8 py-4 rounded-lg font-semibold text-lg border border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
-          >
-            Descargar Informe Modelo de Negocio
-          </a>
-        </div>
-
-        <div className="flex flex-wrap gap-8 text-sm">
-          <div className="flex items-center gap-2">
-            <Smartphone className="w-5 h-5 text-blue-300" />
-            <span>Android + iOS + Web</span>
+          <div className="inline-block bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
+            <span className="text-blue-200 text-sm font-medium">🚀 Sistema Integral de Gestión</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-blue-300" />
-            <span>Infraestructura Escalable</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-blue-300" />
-            <span>Implementación en 48hs</span>
-          </div>
-        </div>
 
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Transforma tu gimnasio en una
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> máquina digital</span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl">
+            SIG-FIT automatiza pagos, gestiona accesos, personaliza rutinas y crea comunidad.
+            Todo en una plataforma escalable para gimnasios que quieren crecer.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <button
+              onClick={() => openModal('demo')}
+              className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+            >
+              Solicitar Demo Gratis
+              <ArrowRight className="w-5 h-5" />
+            </button>
+
+            {/* 🔽 Nuevo botón: Descargar Informe */}
+            <a
+              href="/assets/Modelo-negocio-SIG-FIT.pdf"
+              href={`${base}/assets/Modelo-negocio-SIG-FIT.pdf`}
+              download
+              className="px-8 py-4 rounded-lg font-semibold text-lg border border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+            >
+              Descargar Informe Modelo de Negocio
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-8 text-sm">
+            <div className="flex items-center gap-2">
+              <Smartphone className="w-5 h-5 text-blue-300" />
+              <span>Android + iOS + Web</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-blue-300" />
+              <span>Infraestructura Escalable</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-blue-300" />
+              <span>Implementación en 48hs</span>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+
+
+}
 
 
 // Problem Section
