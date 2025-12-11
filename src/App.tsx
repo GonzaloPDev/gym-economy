@@ -540,12 +540,6 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="inline-block bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
-            <div className="text-slate-600">Margen de rentabilidad promedio de nuestros clientes</div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -715,7 +709,7 @@ const DemoCTA = ({ openModal }) => (
             <div>
               <div className="text-4xl mb-3">📊</div>
               <h3 className="font-bold mb-2">Plan de Acción</h3>
-              <p className="text-blue-100 text-sm">Proyectamos ROI y plan de implementación</p>
+              <p className="text-blue-100 text-sm">Presentamos plan de implementación</p>
             </div>
           </div>
         </div>
@@ -784,7 +778,7 @@ const InvestorDivider = ({ openModal }) => (
         </div>
 
         {/* Botones */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
           <button
             onClick={() => openModal('investor')}
             className="border border-cyan-300/40 bg-white/5 backdrop-blur-md px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 hover:scale-[1.02] transition-all"
@@ -799,8 +793,8 @@ const InvestorDivider = ({ openModal }) => (
 
 // Investment Needed - DARK PREMIUM
 const InvestmentNeeded = () => {
-  const raised = 12000;
-  const goal = 50000;
+  const raised = 586;
+  const goal = 4566;
   const percentage = (raised / goal) * 100;
 
   return (
@@ -867,25 +861,25 @@ const InvestmentNeeded = () => {
           <div className="grid md:grid-cols-3 gap-6 mt-10">
             {[
               {
+                icon: "⚙️",
+                pct: "32%",
+                label: "Infraestructura",
+                desc: "Servidores, cluster, almacenamiento y mantenimiento.",
+                color: "blue",
+              },
+              {
                 icon: "📢",
-                pct: "40%",
+                pct: "52%",
                 label: "Marketing Digital",
-                desc: "Ads, SEO y contenido",
+                desc: "Ads, SEO y contenido para adquisición.",
                 color: "cyan",
               },
               {
                 icon: "👥",
-                pct: "35%",
+                pct: "15%",
                 label: "Equipo Comercial",
-                desc: "Sales reps y prospecting",
+                desc: "Sales reps, prospecting y appointment setting.",
                 color: "emerald",
-              },
-              {
-                icon: "⚙️",
-                pct: "25%",
-                label: "Infraestructura",
-                desc: "Servidores y desarrollo",
-                color: "blue",
               },
             ].map((item, index) => (
               <div
@@ -906,6 +900,7 @@ const InvestmentNeeded = () => {
     </section>
   );
 };
+
 
 
 
@@ -973,105 +968,6 @@ const MarketOpportunity = () => (
   </section>
 );
 
-// Business Model
-const BusinessModel = () => (
-  <section className="py-20 bg-slate-900 text-white">
-    <div className="container mx-auto px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Modelo de Negocio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-            SaaS Escalable con Ingresos Recurrentes
-          </h2>
-          <p className="text-slate-300 text-xl">
-            Economías de escala que maximizan el margen a medida que crece la base de clientes
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-2 border-blue-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <DollarSign className="w-8 h-8 text-green-400" />
-              Estructura de Ingresos
-            </h3>
-
-            <div className="space-y-4">
-              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
-                <div>
-                  <div className="font-semibold">Setup Inicial</div>
-                  <div className="text-sm text-slate-400">Implementación y configuración</div>
-                </div>
-                <div className="text-2xl font-bold text-green-400">$700</div>
-              </div>
-
-              <div className="flex justify-between items-center pb-4 border-b border-slate-700">
-                <div>
-                  <div className="font-semibold">Mantenimiento SaaS</div>
-                  <div className="text-sm text-slate-400">Recurrente mensual</div>
-                </div>
-                <div className="text-2xl font-bold text-blue-400">$45/mes</div>
-              </div>
-
-              <div className="bg-slate-800 rounded-xl p-4 mt-4">
-                <div className="text-sm text-slate-400 mb-2">Ingreso anual por cliente (SaaS)</div>
-                <div className="text-3xl font-bold">$1,240 <span className="text-lg text-slate-400">USD</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-amber-600/20 to-orange-600/20 border-2 border-amber-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <BarChart3 className="w-8 h-8 text-amber-400" />
-              Estructura de Costos
-            </h3>
-
-            <div className="space-y-6">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-300">Costos Fijos Anuales</span>
-                  <span className="font-bold">$1,300-2,000</span>
-                </div>
-                <div className="text-xs text-slate-400">Infraestructura compartida, soporte, herramientas</div>
-              </div>
-
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-300">Costo Variable/Cliente</span>
-                  <span className="font-bold text-green-400">$25-35</span>
-                </div>
-                <div className="text-xs text-slate-400">CPU, RAM, tráfico incremental (muy bajo)</div>
-              </div>
-
-              <div className="bg-slate-800 rounded-xl p-4 mt-4">
-                <div className="text-sm text-slate-400 mb-2">TIR (Tasa Interna de Retorno)</div>
-                <div className="text-3xl font-bold text-green-400">~131%</div>
-                <div className="text-xs text-slate-400 mt-2">A partir del segundo año con 10+ clientes</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-slate-950 border border-amber-500/30 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-6 text-center">🚀 Por qué el modelo SaaS es superior</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-400 mb-2">Economías de Escala</div>
-              <p className="text-slate-400 text-sm">Costos fijos se distribuyen entre todos los clientes</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-green-400 mb-2">Ingresos Recurrentes</div>
-              <p className="text-slate-400 text-sm">Flujo predecible que crece mes a mes</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">Alto LTV</div>
-              <p className="text-slate-400 text-sm">Clientes permanecen 3-5 años promedio</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
 // KPIs & Metrics
 const KPIs = () => (
@@ -1089,8 +985,8 @@ const KPIs = () => (
 
           <div className="bg-gradient-to-br from-green-600/20 to-green-800/20 border border-green-500/30 rounded-xl p-6 text-center">
             <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold mb-2">15-25</div>
-            <div className="text-slate-400 text-sm">Clientes/mes (optimizado)</div>
+            <div className="text-3xl font-bold mb-2">10%</div>
+            <div className="text-slate-400 text-sm">MRR Growth</div>
           </div>
 
           <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/30 rounded-xl p-6 text-center">
@@ -1107,8 +1003,8 @@ const KPIs = () => (
 
           <div className="bg-gradient-to-br from-amber-600/20 to-amber-800/20 border border-amber-500/30 rounded-xl p-6 text-center">
             <Users className="w-12 h-12 text-amber-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold mb-2">85%</div>
-            <div className="text-slate-400 text-sm">Margen de rentabilidad</div>
+            <div className="text-3xl font-bold mb-2">5%</div>
+            <div className="text-slate-400 text-sm">Tasa de Churn</div>
           </div>
         </div>
 
@@ -1279,28 +1175,45 @@ const Roadmap = () => {
   const phases = [
     {
       quarter: "Q1 2026",
-      title: "Consolidación",
-      goals: ["Alcanzar 15 clientes activos", "Refinar procesos de onboarding", "Implementar feedback inicial"],
-      status: "En progreso"
+      title: "Lanzamiento & Validación",
+      goals: [
+        "Alcanzar 8 clientes activos (base actual proyectada)",
+        "Implementar onboarding automatizado",
+        "Liberar módulo estable de rutinas, pagos y asistencia",
+      ],
+      status: "En progreso",
     },
     {
-      quarter: "Q2-Q3 2026",
-      title: "Escalamiento",
-      goals: ["Automatizar marketing digital", "Contratar appointment setter", "Expandir a 25-30 clientes"],
-      status: "Planificado"
+      quarter: "Q2 2026",
+      title: "Optimización del Producto",
+      goals: [
+        "Refinar UX con feedback real de gimnasios",
+        "Mejorar desempeño de infraestructura (Cloudflare + DB tuning)",
+        "Aumentar a 12–15 clientes activos",
+      ],
+      status: "Planificado",
     },
     {
-      quarter: "Q4 2026",
-      title: "Optimización",
-      goals: ["Optimizar infraestructura cloud", "Lanzar programa de referidos", "Superar 40 clientes"],
-      status: "Planificado"
+      quarter: "Q3–Q4 2026",
+      title: "Crecimiento Sostenido",
+      goals: [
+        "Implementar automatizaciones de marketing y remarketing",
+        "Contratar appointment setter para prospección outbound",
+        "Escalar a 18–22 clientes activos",
+      ],
+      status: "Planificado",
     },
     {
       quarter: "2027",
-      title: "Expansión Regional",
-      goals: ["Abrir mercado LATAM", "Partnerships estratégicos", "Alcanzar 100+ clientes"],
-      status: "Visión"
-    }
+      title: "Consolidación & Expansión",
+      goals: [
+        "Optimizar costos de infraestructura y soporte",
+        "Abrir mercado en LATAM",
+        "Partnerships estratégicos",
+        "Alcanzar +50 clientes activos",
+      ],
+      status: "Visión",
+    },
   ];
 
   return (
@@ -1308,7 +1221,9 @@ const Roadmap = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">Hoja de Ruta</span>
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wide">
+              Hoja de Ruta
+            </span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
               Plan de Crecimiento 2026-2027
             </h2>
@@ -1319,10 +1234,19 @@ const Roadmap = () => {
 
             <div className="space-y-12">
               {phases.map((phase, idx) => (
-                <div key={idx} className={`flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-5/12 ${idx % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div
+                  key={idx}
+                  className={`flex items-center ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
+                >
+                  <div
+                    className={`w-5/12 ${idx % 2 === 0 ? "text-right pr-8" : "text-left pl-8"
+                      }`}
+                  >
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500/50 transition-all">
-                      <div className="text-sm text-amber-400 font-semibold mb-2">{phase.quarter}</div>
+                      <div className="text-sm text-amber-400 font-semibold mb-2">
+                        {phase.quarter}
+                      </div>
                       <h3 className="text-2xl font-bold mb-4">{phase.title}</h3>
                       <div className="text-xs text-slate-400 mb-4">{phase.status}</div>
                       <ul className="space-y-2">
@@ -1348,6 +1272,172 @@ const Roadmap = () => {
     </section>
   );
 };
+
+
+// Gallery Carousel Section
+const GalleryCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const screenshots = [
+    { src: '/assets/usuarios.png', title: 'Usuarios', description: 'Lista de usuarios' },
+    { src: '/assets/planes.png', title: 'Planes', description: 'Vista de planes de suscripcion y extras' },
+    { src: '/assets/crearPost.png', title: 'Crear post', description: 'Crear post con imagenes' },
+    { src: '/assets/posts.png', title: 'Comunidad', description: 'Sección de comunidad y comentarios' },
+    { src: '/assets/certificado.png', title: 'Certificado médico', description: 'Se puede aprobar o rechazar el certificado medico en pdf o imagen' },
+  ];
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <span className="text-blue-400 font-semibold text-sm uppercase tracking-wide">
+              Galería
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              Experiencia Mobile Premium
+            </h2>
+            <p className="text-xl text-slate-300">
+              Diseñada con React Native + Expo para iOS y Android
+            </p>
+          </div>
+
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Main Image Display */}
+            <div className="relative bg-slate-950 rounded-3xl p-8 shadow-2xl overflow-hidden">
+              {/* Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 blur-3xl"></div>
+
+              {/* Phone Mockup */}
+              <div className="relative mx-auto max-w-sm">
+                {/* Phone Frame */}
+                <div className="relative bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-4 border-slate-700">
+                  {/* Notch */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
+
+                  {/* Screen - aspect ratio 375:693 */}
+                  <div className="relative bg-white rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '375/693' }}>
+                    <img
+                      src={screenshots[currentIndex].src}
+                      alt={screenshots[currentIndex].title}
+                      className="w-full h-full object-contain bg-slate-100 transition-opacity duration-500"
+                      onError={(e) => {
+                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="375" height="693"%3E%3Crect fill="%23334155" width="375" height="693"/%3E%3Ctext x="50%25" y="50%25" font-size="24" fill="%2394a3b8" text-anchor="middle" dominant-baseline="middle"%3EScreenshot%3C/text%3E%3C/svg%3E';
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Info Overlay */}
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-slate-800/90 backdrop-blur-lg border border-slate-700 rounded-2xl p-4 shadow-xl">
+                  <h3 className="font-bold text-lg mb-1">{screenshots[currentIndex].title}</h3>
+                  <p className="text-sm text-slate-400">{screenshots[currentIndex].description}</p>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-slate-700 border border-slate-600 rounded-full flex items-center justify-center transition-all hover:scale-110 z-20"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-slate-700 border border-slate-600 rounded-full flex items-center justify-center transition-all hover:scale-110 z-20"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Dots Navigation */}
+            <div className="flex justify-center gap-3 mt-12">
+              {screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all ${index === currentIndex
+                    ? 'w-12 h-3 bg-blue-500'
+                    : 'w-3 h-3 bg-slate-600 hover:bg-slate-500'
+                    } rounded-full`}
+                />
+              ))}
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="mt-8 flex gap-4 justify-center overflow-x-auto pb-4">
+              <div className="flex gap-4">
+                {screenshots.map((screenshot, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all ${index === currentIndex
+                      ? 'ring-4 ring-blue-500 scale-105'
+                      : 'ring-2 ring-slate-700 opacity-60 hover:opacity-100'
+                      }`}
+                  >
+                    <div className="w-20 bg-slate-800" style={{ aspectRatio: '375/693' }}>
+                      <img
+                        src={screenshot.src}
+                        alt={screenshot.title}
+                        className="w-full h-full object-contain bg-slate-900"
+                        onError={(e) => {
+                          e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="375" height="693"%3E%3Crect fill="%23334155" width="375" height="693"/%3E%3C/svg%3E';
+                        }}
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Features Grid Below Carousel */}
+          <div className="grid md:grid-cols-3 gap-6 mt-16">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <Smartphone className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+              <h3 className="font-bold text-lg mb-2">React Native</h3>
+              <p className="text-slate-400 text-sm">Rendimiento nativo en iOS y Android</p>
+            </div>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+              <h3 className="font-bold text-lg mb-2">Expo SDK</h3>
+              <p className="text-slate-400 text-sm">Desarrollo rápido y actualizaciones</p>
+            </div>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-center">
+              <svg className="w-12 h-12 text-orange-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              <h3 className="font-bold text-lg mb-2">Firebase Cloud Messaging</h3>
+              <p className="text-slate-400 text-sm">Notificaciones push en tiempo real</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 // Footer Component
 const Footer = () => (
   <footer className="bg-slate-950 text-white border-t border-slate-800">
@@ -1479,11 +1569,12 @@ function App() {
       <Testimonials />
       <Pricing openModal={openModal} />
       <DemoCTA openModal={openModal} />
-      <InvestorDivider openModal={openModal} />
       <MarketOpportunity />
-      <BusinessModel />
+      <InvestorDivider openModal={openModal} />
+      <InvestmentNeeded />
       <KPIs />
       <FinancialProjections />
+      <GalleryCarousel />
       <Roadmap />
       <Footer />
     </div>
